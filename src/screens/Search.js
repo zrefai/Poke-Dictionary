@@ -1,27 +1,22 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
-import { commonStyles } from "../styles/styleConfig";
+import SearchBar from "../components/SearchBar";
 
-const TextContainer = styled(Text, commonStyles.PokemonGB)`pt2`;
+const SearchContainer = styled(View)`flx-i bg-white aic`;
 
 const Search = () => {
   const [term, setTerm] = useState("");
 
   return (
-    <View style={styles.container}>
-      <TextContainer>Hello</TextContainer>
-    </View>
+    <SearchContainer>
+      <SearchBar
+        term={term}
+        onTermChange={setTerm}
+        onTermSubmit={() => console.log(term)}
+      />
+    </SearchContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default Search;
