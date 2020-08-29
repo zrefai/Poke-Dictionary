@@ -1,11 +1,14 @@
+import "react-native-gesture-handler";
 import React from "react";
+import { StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import { AppLoading } from "expo";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-// import { AppFontLoader } from "./src/utils/AppFontLoader";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Search from "./src/screens/Search";
 
 export default function App() {
+  const Stack = createStackNavigator();
   const [loaded] = useFonts({
     Pokemon_GB: require("./assets/fonts/PokemonGb-RAeo.ttf"),
     Unown: require("./assets/fonts/PokemonUnownGb-YAWa.ttf"),
@@ -16,18 +19,25 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontFamily: "Unown" }}>Hello Sammy Najib</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{
+            title: "Pokemon Search",
+            headerTitleStyle: styles.headerStyle,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  headerStyle: {
+    fontFamily: "Pokemon_GB",
+    paddingTop: 5,
+    fontSize: 12,
   },
 });
