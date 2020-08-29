@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { styled } from "@shipt/react-native-tachyons";
+import { commonStyles } from "../styles/styleConfig";
+
+const TextContainer = styled(Text, commonStyles.PokemonGB)`pt2`;
 
 const Search = () => {
   const [term, setTerm] = useState("");
 
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          fontFamily: "Pokemon_GB",
-          paddingTop: 7,
-        }}
-      >
-        Hello
-      </Text>
+      <TextContainer>Hello</TextContainer>
     </View>
   );
 };

@@ -1,10 +1,10 @@
 import "react-native-gesture-handler";
 import React from "react";
-import { StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { commonStyles } from "./src/styles/styleConfig";
 import Search from "./src/screens/Search";
 
 export default function App() {
@@ -26,18 +26,10 @@ export default function App() {
           component={Search}
           options={{
             title: "Pokemon Search",
-            headerTitleStyle: styles.headerStyle,
+            headerTitleStyle: commonStyles.headerTitleText,
           }}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  headerStyle: {
-    fontFamily: "Pokemon_GB",
-    paddingTop: 5,
-    fontSize: 12,
-  },
-});
