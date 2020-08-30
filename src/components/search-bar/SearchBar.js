@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import React from "react";
+import { View, TextInput } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./searchBarStyles";
 import { Feather } from "@expo/vector-icons";
-import { render } from "react-dom";
 
 const SearchBarContainer = styled(View, styles.backgroundStyle)``;
 
