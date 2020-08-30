@@ -13,7 +13,9 @@ const backgroundStyle = {
 
 const inputStyle = {
   flex: 1,
-  fontSize: noramlizeFont(15),
+  paddingTop: 5,
+  fontFamily: "Pokemon_GB",
+  fontSize: noramlizeFont(13),
 };
 
 const iconStyle = {

@@ -1,8 +1,9 @@
-import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "../styles/searchBarStyles";
 import { Feather } from "@expo/vector-icons";
+import { render } from "react-dom";
 
 const SearchBarContainer = styled(View, styles.backgroundStyle)``;
 
@@ -13,9 +14,10 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
       <TextInput
         autoCapitalize="none"
         autoCorrect={false}
+        clearButtonMode="while-editing"
         style={styles.inputStyle}
-        placeholder="Search"
         value={term}
+        placeholder="..."
         onChangeText={onTermChange}
         onEndEditing={onTermSubmit}
       />
