@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
-import { styles } from "../styles/searchBarStyles";
+import { styles } from "./searchBarStyles";
 import { Feather } from "@expo/vector-icons";
 import { render } from "react-dom";
 

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { normalizeUIH, noramlizeFont } from "./styleConfig";
+import { normalizeUIH, noramlizeFont } from "../../styles/styleConfig";
 
 const backgroundStyle = {
   marginVertical: 10,
