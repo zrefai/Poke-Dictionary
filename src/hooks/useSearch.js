@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import PokemonAPI from "../api/PokemonAPI";
 
-export default (URL) => {
+export default () => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
 
-  const getPokemon = async (pokemonURL) => {
-    return await axios
-      .create({
-        url: pokemonURL,
-      })
-      .get(URL)
+  const searchPokemon = async (URL) => {
+    //Reset error here during a get in case reloading
+    //404, undefined
+    setError("");
+
+    return await PokemonAPI.get(URL)
       .then((response) => {
-        setResults(response.data);
+        setResults(response.data.results);
       })
       .catch((error) => {
         if (error.response) {
@@ -33,8 +33,8 @@ export default (URL) => {
   };
 
   useEffect(() => {
-    getPokemon(URL);
+    searchPokemon("pokemon");
   }, []);
 
-  return [getPokemon, results, error];
+  return [searchPokemon, results, error];
 };
