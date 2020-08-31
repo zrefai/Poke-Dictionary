@@ -40,9 +40,7 @@ const PokemonCard = ({ name, url }) => {
           <PokemonCardImage uri={results.sprites} />
         </PokemonCardImageContainer>
         <PokemonCardTextContainer>
-          <PokemonCardText style={styles.text}>
-            {capitalize(name)}
-          </PokemonCardText>
+          <PokemonCardText>{capitalize(name)}</PokemonCardText>
         </PokemonCardTextContainer>
         <PokemonCardTypeContainer>
           <PokemonType type={results.types} />

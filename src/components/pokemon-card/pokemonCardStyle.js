@@ -18,7 +18,7 @@ const pokemonCardImageContainer = {
 const pokemonCardTextContainer = {
   flex: 3,
   alignContent: "center",
-  paddingTop: 2,
+  paddingTop: 3,
 };
 
 const pokemonCardText = {
