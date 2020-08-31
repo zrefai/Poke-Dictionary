@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  ImageBackground,
-} from "react-native";
+import React from "react";
+import { View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./pokemonCardStyle";
+import { commonStyles } from "../../styles/styleConfig";
 import usePokemon from "../../hooks/usePokemon";
 import PokemonType from "../pokemon-type/PokemonType";
-import { commonStyles } from "../../styles/styleConfig";
+import PokemonCardImage from "./pokemon-card-image/PokemonCardImage";
 
 const PokemonCardContainer = styled(View, styles.pokemonCardContainer)``;
 const PokemonCardNothingText = styled(Text, commonStyles.PokemonGB)`jcc asc`;
@@ -22,6 +16,14 @@ const PokemonCardTextContainer = styled(
   styles.pokemonCardTextContainer
 )`jcc`;
 const PokemonCardText = styled(Text, styles.pokemonCardText)``;
+const PokemonCardImageContainer = styled(
+  View,
+  styles.pokemonCardImageContainer
+)``;
+const PokemonCardTypeContainer = styled(
+  View,
+  styles.pokemonCardTypeContainer
+)``;
 
 const PokemonCard = ({ name, url }) => {
   const [getPokemon, results, error] = usePokemon(url);
@@ -34,13 +36,17 @@ const PokemonCard = ({ name, url }) => {
   const renderPokemonCard = () => {
     return (
       <PokemonCardButton>
-        <Text style={{ flex: 2 }}>Image</Text>
+        <PokemonCardImageContainer>
+          <PokemonCardImage uri={results.sprites} />
+        </PokemonCardImageContainer>
         <PokemonCardTextContainer>
           <PokemonCardText style={styles.text}>
             {capitalize(name)}
           </PokemonCardText>
         </PokemonCardTextContainer>
-        <PokemonType type={results.types} />
+        <PokemonCardTypeContainer>
+          <PokemonType type={results.types} />
+        </PokemonCardTypeContainer>
       </PokemonCardButton>
     );
   };

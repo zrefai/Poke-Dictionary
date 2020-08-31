@@ -2,10 +2,7 @@ import { StyleSheet } from "react-native";
 import { normalizeFont, normalizeUIW } from "../../styles/styleConfig";
 
 const typeContainer = {
-  flex: 1,
   flexDirection: "column",
-  alignContent: "center",
-  justifyContent: "center",
 };
 
 const typeBackground = {

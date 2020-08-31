@@ -9,12 +9,16 @@ const pokemonCardContainer = {
   marginHorizontal: 6,
   marginVertical: 4,
   padding: 6,
-  backgroundColor: "#61dafb",
+};
+
+const pokemonCardImageContainer = {
+  flex: 2,
 };
 
 const pokemonCardTextContainer = {
   flex: 3,
   alignContent: "center",
+  paddingTop: 2,
 };
 
 const pokemonCardText = {
@@ -22,8 +26,15 @@ const pokemonCardText = {
   paddingTop: 1,
 };
 
+const pokemonCardTypeContainer = {
+  alignContent: "center",
+  justifyContent: "center",
+};
+
 export const styles = StyleSheet.create({
   pokemonCardContainer,
+  pokemonCardImageContainer,
   pokemonCardText,
   pokemonCardTextContainer,
+  pokemonCardTypeContainer,
 });
