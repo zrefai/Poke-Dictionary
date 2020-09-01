@@ -29,6 +29,7 @@ const pokemonCardText = {
 const pokemonCardTypeContainer = {
   alignContent: "center",
   justifyContent: "center",
+  marginRight: 3,
 };
 
 export const styles = StyleSheet.create({

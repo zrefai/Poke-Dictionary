@@ -35,6 +35,8 @@ const PokemonType = ({ type }) => {
         return "#88952F";
       case "poison":
         return "#833581";
+      case "psychic":
+        return "#E66488";
       case "dark":
         return "#472E1D";
       case "ghost":

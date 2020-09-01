@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
-import { styled } from "@shipt/react-native-tachyons";
-import SearchBar from "../components/search-bar/SearchBar";
-import usePokemon from "../hooks/useSearch";
-import PokemonCard from "../components/pokemon-card/PokemonCard";
+import React from "react";
+import { View, Text, ScrollView, FlatList } from "react-native";
+import useSearch from "../hooks/useSearch";
+import PokemonSearch from "../components/pokemon-search/PokemonSearch";
 
-const SearchContainer = styled(View)`flx-i bg-white`;
+const Search = ({ navigation }) => {
+  const [results, error] = useSearch();
 
-const Search = () => {
-  const [term, setTerm] = useState("");
-  const [searchPokemon, results, error] = usePokemon();
+  const renderPokemonList = () => {
+    if (results.length == 0 || error) return <Text>Loading</Text>;
 
-  return (
-    <SearchContainer>
-      <SearchBar
-        term={term}
-        onTermChange={setTerm}
-        onTermSubmit={() => searchPokemon(`pokemon/${term.toLowerCase()}`)}
-      />
-      <ScrollView style={{ width: "100%" }}>
-        {results.map((pokemon, index) => {
-          return (
-            <PokemonCard key={index} name={pokemon.name} url={pokemon.url} />
-          );
-        })}
-      </ScrollView>
-    </SearchContainer>
-  );
+    let pokemonMap = new Map();
+    for (let i = 0; i < results.length; ++i) {
+      pokemonMap.set(results[i].name, results[i].url);
+    }
+
+    return <PokemonSearch pokemonList={results} pokemonMap={pokemonMap} />;
+  };
+  return renderPokemonList();
 };
 
 export default Search;

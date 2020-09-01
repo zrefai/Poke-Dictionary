@@ -3,11 +3,20 @@ import { normalizeFont } from "../../styles/styleConfig";
 
 const backgroundStyle = {
   marginVertical: 10,
-  backgroundColor: "#F0EEEE",
+  backgroundColor: "#f0eeee",
   borderRadius: 5,
   marginHorizontal: 15,
   flexDirection: "row",
   marginBottom: 6,
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 3,
+  },
+  shadowOpacity: 0.41,
+  shadowRadius: 6,
+
+  elevation: 6,
 };
 
 const inputStyle = {

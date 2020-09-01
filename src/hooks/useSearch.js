@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PokemonAPI from "../api/PokemonAPI";
+import { instance } from "../api/PokemonAPI";
 
 export default () => {
   const [results, setResults] = useState([]);
@@ -10,7 +10,8 @@ export default () => {
     //404, undefined
     setError("");
 
-    return await PokemonAPI.get(URL)
+    return await instance
+      .get(URL)
       .then((response) => {
         setResults(response.data.results);
       })
@@ -33,8 +34,9 @@ export default () => {
   };
 
   useEffect(() => {
-    searchPokemon("pokemon");
+    //TODO: Change it so that pokemon-species is used instead, better for naming
+    searchPokemon("pokemon/?limit=1500");
   }, []);
 
-  return [searchPokemon, results, error];
+  return [results, error];
 };
