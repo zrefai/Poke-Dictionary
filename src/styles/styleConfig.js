@@ -1,5 +1,4 @@
 import { Dimensions, PixelRatio, StyleSheet } from "react-native";
-import { build } from "@shipt/react-native-tachyons";
 
 export const deviceWidth = Dimensions.get("window").width;
 export const deviceHeight = Dimensions.get("window").height;

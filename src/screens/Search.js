@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, FlatList } from "react-native";
+import { Text } from "react-native";
 import useSearch from "../hooks/useSearch";
 import PokemonSearch from "../components/pokemon-search/PokemonSearch";
 

@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { normalizeFont, normalizeUIW } from "../../styles/styleConfig";
+import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./pokemonTypeStyles";
 

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, FlatList, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
-import { instance, pokemonURL } from "../../api/PokemonAPI";
 import SearchBar from "../search-bar/SearchBar";
 import PokemonList from "../pokemon-list/PokemonList";
 import { styles } from "./PokemonSearchStyles";

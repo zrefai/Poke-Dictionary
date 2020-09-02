@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, ScrollView, Text } from "react-native";
+import React from "react";
+import { FlatList, View, TouchableOpacity, Text } from "react-native";
 import { uuid } from "../../utils/uuid";
 import { styled } from "@shipt/react-native-tachyons";
 import PokemonCard from "../pokemon-card/PokemonCard";
@@ -10,22 +10,27 @@ const LoadMoreButtonText = styled(Text, styles.loadMoreText)``;
 const NothingView = styled(View)`mv5`;
 
 const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
+  const renderLoadMore = () => {
+    if (searching) {
+      return <NothingView />;
+    }
+
+    return (
+      <LoadMoreButton onPress={() => onLoadMore()}>
+        <LoadMoreButtonText>Load More</LoadMoreButtonText>
+      </LoadMoreButton>
+    );
+  };
+
   return (
-    <ScrollView style={{ flex: 1, width: "100%" }}>
-      {/*Transform into flatlist where button is footer component*/}
-      {pokemonList.map((pokemon) => {
-        return (
-          <PokemonCard key={uuid()} name={pokemon.name} url={pokemon.url} />
-        );
-      })}
-      {searching ? (
-        <NothingView />
-      ) : (
-        <LoadMoreButton onPress={() => onLoadMore()}>
-          <LoadMoreButtonText>Load More</LoadMoreButtonText>
-        </LoadMoreButton>
-      )}
-    </ScrollView>
+    <FlatList
+      data={pokemonList}
+      renderItem={({ item }) => {
+        return <PokemonCard key={uuid()} name={item.name} url={item.url} />;
+      }}
+      keyExtractor={(item) => item.url}
+      ListFooterComponent={renderLoadMore()}
+    />
   );
 };
 

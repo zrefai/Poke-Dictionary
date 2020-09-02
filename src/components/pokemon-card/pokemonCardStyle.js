@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { normalizeFont, normalizeUIW } from "../../styles/styleConfig";
 
 const pokemonCardContainer = {
   flex: 1,
