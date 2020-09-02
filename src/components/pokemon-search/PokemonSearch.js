@@ -18,12 +18,17 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
   const [index, setIndex] = useState(20);
   const [pokeList, setPokeList] = useState(pokemonList.slice(0, index));
   const [searchError, setSearchError] = useState(false);
+  const [searching, setSearching] = useState(false);
+  const [newlyAddedPokemon, setNewlyAddedPokemon] = useState(new Map());
   const [searchFilterResults, setSearchFilterResults] = useState(
     pokemonList.slice(0, index)
   );
 
-  const checkSearchFilterResults = (searchTerm) => {
-    for (let i = 0; i < searchFilterResults.length; ++i) {
+  const checkSearchFilterResults = (
+    searchTerm,
+    length = searchFilterResults.length
+  ) => {
+    for (let i = 0; i < length; ++i) {
       if (searchFilterResults[i].name === searchTerm) {
         return true;
       }
@@ -32,8 +37,10 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
   };
 
   const newSearch = (searchTerm) => {
-    searchTerm = searchTerm.replace(/^\s+|\s+$/gm, "").toLowerCase();
+    if (searchTerm.length === 0) return;
+    if (pokeList.length > 0) return;
 
+    searchTerm = searchTerm.replace(/^\s+|\s+$/gm, "").toLowerCase();
     if (pokemonMap.has(searchTerm)) {
       if (checkSearchFilterResults(searchTerm)) return;
       let newFilterResults = searchFilterResults;
@@ -42,7 +49,12 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
         url: pokemonMap.get(searchTerm),
       };
 
-      newFilterResults.push(newFilterEntry);
+      //Add for load more button check
+      let newlyAddedMap = newlyAddedPokemon;
+      newlyAddedMap.set(searchTerm);
+      setNewlyAddedPokemon(newlyAddedMap);
+
+      newFilterResults.unshift(newFilterEntry);
       setSearchFilterResults(newFilterResults);
       searchFilter(term);
     } else {
@@ -51,7 +63,11 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
   };
 
   const searchFilter = (newTerm) => {
-    setSearchError(false);
+    if (newTerm.length === 0) setSearching(false);
+    else searching ? null : setSearching(true);
+
+    //Reset searchError on new search during filter
+    searchError ? setSearchError(false) : null;
     setTerm(newTerm);
 
     const newSearchResults = searchFilterResults.filter((item) => {
@@ -63,6 +79,22 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
 
     //If new search results yields from currently loaded list
     if (newSearchResults) setPokeList(newSearchResults);
+  };
+
+  const loadMorePokemon = () => {
+    const newIndex = index + 20;
+    let newResultsList = searchFilterResults;
+    //Hit upper bound or limit, dont generate more to list
+    if (newIndex >= pokemonList.length) return;
+
+    for (let i = index + 1; i < newIndex; ++i) {
+      if (newlyAddedPokemon.has(pokemonList[i].name)) continue;
+      newResultsList.push(pokemonList[i]);
+    }
+
+    setIndex(newIndex);
+    setPokeList(newResultsList);
+    setSearchFilterResults(newResultsList);
   };
 
   return (
@@ -78,9 +110,12 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
           <NothingHereText>Please try again.</NothingHereText>
         </NothingHereContainer>
       ) : (
-        <PokemonList pokemonList={pokeList} />
+        <PokemonList
+          pokemonList={pokeList}
+          searching={searching}
+          onLoadMore={loadMorePokemon}
+        />
       )}
-      {/*index change prop here in pokemonList*/}
     </SearchContainer>
   );
 };
