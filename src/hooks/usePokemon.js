@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default (URL) => {
+export default (name, URL) => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const cancelToken = axios.CancelToken;
+  const source = cancelToken.source();
 
   const getPokemon = async (pokemonURL) => {
     return await axios
       .create({
         url: pokemonURL,
       })
-      .get(URL)
+      .get(URL, { cancelToken: source.token })
       .then((response) => {
         setResults(response.data);
       })
@@ -34,6 +36,10 @@ export default (URL) => {
 
   useEffect(() => {
     getPokemon(URL);
+
+    return () => {
+      source.cancel();
+    };
   }, []);
 
   return [getPokemon, results, error];

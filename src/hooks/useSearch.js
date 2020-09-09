@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { instance } from "../api/PokemonAPI";
 
 export default () => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const cancelToken = axios.CancelToken;
+  const source = cancelToken.source();
 
   const searchPokemon = async (URL) => {
     //Reset error here during a get in case reloading
@@ -11,7 +14,7 @@ export default () => {
     setError("");
 
     return await instance
-      .get(URL)
+      .get(URL, { cancelToken: source.token })
       .then((response) => {
         setResults(response.data.results);
       })
@@ -36,6 +39,9 @@ export default () => {
   useEffect(() => {
     //TODO: Change it so that pokemon-species is used instead, better for naming
     searchPokemon("pokemon/?limit=1500");
+    return () => {
+      source.cancel();
+    };
   }, []);
 
   return [results, error];

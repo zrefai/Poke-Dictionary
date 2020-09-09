@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
@@ -26,7 +26,7 @@ const PokemonCardTypeContainer = styled(
 )``;
 
 const PokemonCard = ({ name, url }) => {
-  const [getPokemon, results, error] = usePokemon(url);
+  const [getPokemon, results, error] = usePokemon(name, url);
 
   const capitalize = (s) => {
     if (typeof s !== "string") return "";
@@ -60,4 +60,4 @@ const PokemonCard = ({ name, url }) => {
   );
 };
 
-export default PokemonCard;
+export default memo(PokemonCard);

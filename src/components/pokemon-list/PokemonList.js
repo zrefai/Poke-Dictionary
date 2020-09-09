@@ -1,5 +1,11 @@
 import React from "react";
-import { FlatList, View, TouchableOpacity, Text } from "react-native";
+import {
+  FlatList,
+  ScrollView,
+  View,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import { uuid } from "../../utils/uuid";
 import { styled } from "@shipt/react-native-tachyons";
 import PokemonCard from "../pokemon-card/PokemonCard";
@@ -23,14 +29,24 @@ const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
   };
 
   return (
-    <FlatList
-      data={pokemonList}
-      renderItem={({ item }) => {
-        return <PokemonCard key={uuid()} name={item.name} url={item.url} />;
-      }}
-      keyExtractor={(item) => item.url}
-      ListFooterComponent={renderLoadMore()}
-    />
+    <ScrollView style={{ flex: 1, width: "100%" }}>
+      {/*Transform into flatlist where button is footer component*/}
+      {pokemonList.map((pokemon) => {
+        return (
+          <PokemonCard key={uuid()} name={pokemon.name} url={pokemon.url} />
+        );
+      })}
+      {renderLoadMore()}
+    </ScrollView>
+    //TODO: Revisit flatlist because currently its causing issues
+    // <FlatList
+    //   data={pokemonList}
+    //   renderItem={({ item }) => {
+    //     return <PokemonCard key={uuid()} name={item.name} url={item.url} />;
+    //   }}
+    //   keyExtractor={(item) => item.url}
+    //   ListFooterComponent={renderLoadMore()}
+    // />
   );
 };
 
