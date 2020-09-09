@@ -23,6 +23,7 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
     pokemonList.slice(0, index)
   );
 
+  console.log(pokeList);
   const checkSearchFilterResults = (
     searchTerm,
     length = searchFilterResults.length

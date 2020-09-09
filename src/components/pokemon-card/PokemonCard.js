@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./pokemonCardStyle";
 import { commonStyles } from "../../styles/styleConfig";
+import { useNavigation } from "@react-navigation/native";
 import usePokemon from "../../hooks/usePokemon";
 import PokemonType from "../pokemon-type/PokemonType";
 import PokemonCardImage from "./pokemon-card-image/PokemonCardImage";
@@ -27,6 +28,7 @@ const PokemonCardTypeContainer = styled(
 
 const PokemonCard = ({ name, url }) => {
   const [getPokemon, results, error] = usePokemon(name, url);
+  const navigation = useNavigation();
 
   const capitalize = (s) => {
     if (typeof s !== "string") return "";
@@ -35,7 +37,14 @@ const PokemonCard = ({ name, url }) => {
 
   const renderPokemonCard = () => {
     return (
-      <PokemonCardButton>
+      <PokemonCardButton
+        onPress={() =>
+          navigation.navigate("Details", {
+            name: capitalize(name),
+            details: results,
+          })
+        }
+      >
         <PokemonCardImageContainer>
           <PokemonCardImage uri={results.sprites} />
         </PokemonCardImageContainer>

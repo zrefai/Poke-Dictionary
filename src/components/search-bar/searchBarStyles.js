@@ -13,10 +13,9 @@ const backgroundStyle = {
     width: 0,
     height: 3,
   },
-  shadowOpacity: 0.41,
-  shadowRadius: 6,
-
-  elevation: 6,
+  shadowOpacity: 0.18,
+  shadowRadius: 2.0,
+  elevation: 1,
 };
 
 const inputStyle = {

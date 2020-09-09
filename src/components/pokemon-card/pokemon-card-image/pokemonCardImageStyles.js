@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { normalizeUIH, normalizeUIW } from "../../../styles/styleConfig";
 
 const pokemonImage = {
   width: "70%",
