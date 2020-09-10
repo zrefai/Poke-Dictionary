@@ -8,8 +8,8 @@ import {
 } from "react-native";
 import { uuid } from "../../utils/uuid";
 import { styled } from "@shipt/react-native-tachyons";
-import PokemonCard from "../pokemon-card/PokemonCard";
 import { styles } from "./pokemonListStyles";
+import PokemonCard from "../pokemon-card/PokemonCard";
 
 const LoadMoreButton = styled(TouchableOpacity, styles.loadMoreButton)`aic`;
 const LoadMoreButtonText = styled(Text, styles.loadMoreText)``;
@@ -23,14 +23,13 @@ const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
 
     return (
       <LoadMoreButton onPress={() => onLoadMore()}>
-        <LoadMoreButtonText>Load More</LoadMoreButtonText>
+        <LoadMoreButtonText>LOAD MORE</LoadMoreButtonText>
       </LoadMoreButton>
     );
   };
 
   return (
     <ScrollView style={{ flex: 1, width: "100%" }}>
-      {/*Transform into flatlist where button is footer component*/}
       {pokemonList.map((pokemon) => {
         return (
           <PokemonCard key={uuid()} name={pokemon.name} url={pokemon.url} />

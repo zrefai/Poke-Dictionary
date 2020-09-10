@@ -25,6 +25,7 @@ const headerTitleText = {
 };
 
 const PokemonGB = {
+  paddingTop: 5,
   fontFamily: "Pokemon_GB",
   fontSize: normalizeFont(10),
 };

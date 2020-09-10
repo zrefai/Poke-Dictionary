@@ -5,18 +5,18 @@ import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./pokemonCardStyle";
 import { commonStyles } from "../../styles/styleConfig";
 import { useNavigation } from "@react-navigation/native";
-import usePokemon from "../../hooks/usePokemon";
 import PokemonType from "../pokemon-type/PokemonType";
 import PokemonCardImage from "./pokemon-card-image/PokemonCardImage";
+import useSearch from "../../hooks/useSearch";
 
 const PokemonCardContainer = styled(View, styles.pokemonCardContainer)``;
 const PokemonCardNothingText = styled(Text, commonStyles.PokemonGB)`jcc asc`;
 const PokemonCardButton = styled(TouchableOpacity)`flx-i flx-row`;
+const PokemonCardText = styled(Text, styles.pokemonCardText)``;
 const PokemonCardTextContainer = styled(
   View,
   styles.pokemonCardTextContainer
 )`jcc`;
-const PokemonCardText = styled(Text, styles.pokemonCardText)``;
 const PokemonCardImageContainer = styled(
   View,
   styles.pokemonCardImageContainer
@@ -27,7 +27,11 @@ const PokemonCardTypeContainer = styled(
 )``;
 
 const PokemonCard = ({ name, url }) => {
-  const [getPokemon, results, error] = usePokemon(name, url);
+  const [fetchPokemonResults, results, error] = useSearch(
+    url,
+    `@POKEMON_${name.toUpperCase()}`,
+    name
+  );
   const navigation = useNavigation();
 
   const capitalize = (s) => {

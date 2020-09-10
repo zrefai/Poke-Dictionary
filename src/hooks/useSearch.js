@@ -1,49 +1,44 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { instance } from "../api/PokemonAPI";
 import { errorLog } from "../utils/errorLog";
 import AsyncStorage from "@react-native-community/async-storage";
 
-export default () => {
+export default (URL, key, name = "") => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
   const cancelToken = axios.CancelToken;
   const source = cancelToken.source();
 
-  const searchPokemon = async (URL) => {
-    //Reset error here during a get in case reloading
+  const fetchPokemonResults = async () => {
+    //Reset error on reload of results
     setError("");
-    //AsyncStorage.clear();
 
-    let master_list = await AsyncStorage.getItem("@MASTER_LIST");
-    if (master_list !== null) {
-      console.log("Async Storage @MASTER_LIST");
-      setResults(JSON.parse(master_list));
+    let results_data = await AsyncStorage.getItem(key);
+    if (results_data !== null) {
+      //console.log("Async Storage", key);
+      setResults(JSON.parse(results_data));
       return;
     }
-
-    return await instance
+    return await axios
+      .create({ url: URL })
       .get(URL, { cancelToken: source.token })
       .then((response) => {
-        console.log("Axios GET @MASTER_LIST");
-        setResults(response.data.results);
-        AsyncStorage.setItem(
-          "@MASTER_LIST",
-          JSON.stringify(response.data.results)
-        );
+        //console.log("Axios GET", key);
+        setResults(response.data);
+        AsyncStorage.setItem(key, JSON.stringify(response.data));
       })
       .catch((error) => {
-        errorLog(error, setError, 1);
+        errorLog(error, setError, name);
       });
   };
 
   useEffect(() => {
-    //TODO: Change it so that pokemon-species is used instead, better for naming
-    searchPokemon("pokemon/?limit=1500");
+    fetchPokemonResults();
+
     return () => {
       source.cancel();
     };
   }, []);
 
-  return [results, error];
+  return [fetchPokemonResults, results, error];
 };

@@ -12,11 +12,11 @@ const loadMoreButton = {
 };
 
 const loadMoreText = {
-  paddingTop: 5,
+  paddingTop: 7,
   paddingBottom: 3,
   paddingHorizontal: 6,
   fontFamily: "Pokemon_GB",
-  fontSize: normalizeFont(10),
+  fontSize: normalizeFont(12),
   color: "white",
 };
 
