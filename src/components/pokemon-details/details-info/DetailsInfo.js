@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { normalizeFont, normalizeUIW } from "../../../styles/styleConfig";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./detailsInfoStyles";
+import { uuid } from "../../../utils/uuid";
 
 const DetailsInfoContainer = styled(View)`mt5 mh6`;
 const DetailsHeaderText = styled(Text, styles.detailsheaderText)``;
@@ -23,7 +24,7 @@ const DetailsInfo = ({ header, params }) => {
           const keys = Object.keys(item);
           const values = Object.values(item);
           return (
-            <DetailsInfoCellsContainer>
+            <DetailsInfoCellsContainer key={uuid()}>
               <DetailInfoCell>
                 <DetailInfoCellText>{`${keys[0]}: ${values[0]}`}</DetailInfoCellText>
               </DetailInfoCell>

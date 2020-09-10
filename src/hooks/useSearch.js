@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { instance } from "../api/PokemonAPI";
+import { errorLog } from "../utils/errorLog";
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default () => {
   const [results, setResults] = useState([]);
@@ -10,29 +12,28 @@ export default () => {
 
   const searchPokemon = async (URL) => {
     //Reset error here during a get in case reloading
-    //404, undefined
     setError("");
+    //AsyncStorage.clear();
+
+    let master_list = await AsyncStorage.getItem("@MASTER_LIST");
+    if (master_list !== null) {
+      console.log("Async Storage @MASTER_LIST");
+      setResults(JSON.parse(master_list));
+      return;
+    }
 
     return await instance
       .get(URL, { cancelToken: source.token })
       .then((response) => {
+        console.log("Axios GET @MASTER_LIST");
         setResults(response.data.results);
+        AsyncStorage.setItem(
+          "@MASTER_LIST",
+          JSON.stringify(response.data.results)
+        );
       })
       .catch((error) => {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.status);
-          setError(error.response.status);
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-        }
+        errorLog(error, setError, 1);
       });
   };
 

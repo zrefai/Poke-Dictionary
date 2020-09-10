@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { errorLog } from "../utils/errorLog";
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default (name, URL) => {
   const [results, setResults] = useState([]);
@@ -8,29 +10,32 @@ export default (name, URL) => {
   const source = cancelToken.source();
 
   const getPokemon = async (pokemonURL) => {
+    setError("");
+
+    let pokemon_data = await AsyncStorage.getItem(
+      `@POKEMON_${name.toUpperCase()}`
+    );
+    if (pokemon_data !== null) {
+      // console.log(`Async Storage @POKEMON_${name.toUpperCase()}`);
+      setResults(JSON.parse(pokemon_data));
+      return;
+    }
+
     return await axios
       .create({
         url: pokemonURL,
       })
       .get(URL, { cancelToken: source.token })
       .then((response) => {
+        // console.log(`Axios GET @POKEMON_${name.toUpperCase()}`);
         setResults(response.data);
+        AsyncStorage.setItem(
+          `@POKEMON_${name.toUpperCase()}`,
+          JSON.stringify(response.data)
+        );
       })
       .catch((error) => {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log("Error in response POKEMON CARD:", error.response.status);
-          setError(error.response.status);
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log("Error in response POKEMON CARD:", error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-        }
+        errorLog(error, setError, name);
       });
   };
 
