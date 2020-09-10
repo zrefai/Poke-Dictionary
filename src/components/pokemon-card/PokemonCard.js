@@ -52,7 +52,7 @@ const PokemonCard = ({ name, url }) => {
           <PokemonCardText>{capitalize(name)}</PokemonCardText>
         </PokemonCardTextContainer>
         <PokemonCardTypeContainer>
-          <PokemonType type={results.types} />
+          <PokemonType types={results.types} />
         </PokemonCardTypeContainer>
       </PokemonCardButton>
     );

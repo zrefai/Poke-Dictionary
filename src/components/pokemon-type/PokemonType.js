@@ -3,11 +3,11 @@ import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./pokemonTypeStyles";
 
-const PokemonTypeContainer = styled(View, styles.typeContaner)``;
+const PokemonTypeContainer = styled(View)``;
 const PokemonTypeBackground = styled(View, styles.typeBackground)``;
-const PokemonTypeText = styled(Text, styles.typeText)``;
+const PokemonTypeText = styled(Text)``;
 
-const PokemonType = ({ type }) => {
+const PokemonType = ({ types, details_flag = 0 }) => {
   const typeColor = (type) => {
     switch (type) {
       case "grass":
@@ -59,15 +59,23 @@ const PokemonType = ({ type }) => {
           backgroundColor: typeColor(pokemonType.name),
         }}
       >
-        <PokemonTypeText>{pokemonType.name.toUpperCase()}</PokemonTypeText>
+        <PokemonTypeText
+          style={details_flag ? styles.typeTextDetails : styles.typeTextCard}
+        >
+          {pokemonType.name.toUpperCase()}
+        </PokemonTypeText>
       </PokemonTypeBackground>
     );
   };
 
   return (
-    <PokemonTypeContainer>
-      {type
-        ? type.map((type, index) => {
+    <PokemonTypeContainer
+      style={
+        details_flag ? styles.typeContainerRow : styles.typeContainerColumn
+      }
+    >
+      {types
+        ? types.map((type, index) => {
             return renderPokemonType(type.type, index);
           })
         : undefined}

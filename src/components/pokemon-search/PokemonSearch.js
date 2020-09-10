@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
+import { styles } from "./PokemonSearchStyles";
 import SearchBar from "../search-bar/SearchBar";
 import PokemonList from "../pokemon-list/PokemonList";
-import { styles } from "./PokemonSearchStyles";
 
 const SearchContainer = styled(View)`flx-i bg-white`;
 const NothingHereContainer = styled(

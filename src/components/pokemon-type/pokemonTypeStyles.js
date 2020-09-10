@@ -1,8 +1,11 @@
 import { StyleSheet } from "react-native";
 import { normalizeFont, normalizeUIW } from "../../styles/styleConfig";
 
-const typeContainer = {
+const typeContainerColumn = {
   flexDirection: "column",
+};
+const typeContainerRow = {
+  flexDirection: "row",
 };
 
 const typeBackground = {
@@ -12,7 +15,7 @@ const typeBackground = {
   margin: 1,
 };
 
-const typeText = {
+const typeTextCard = {
   alignSelf: "center",
   fontFamily: "Pokemon_GB",
   color: "white",
@@ -21,8 +24,19 @@ const typeText = {
   fontSize: normalizeFont(8.5),
 };
 
+const typeTextDetails = {
+  alignSelf: "center",
+  fontFamily: "Pokemon_GB",
+  color: "white",
+  paddingHorizontal: 5,
+  paddingTop: 4,
+  fontSize: normalizeFont(10),
+};
+
 export const styles = StyleSheet.create({
-  typeContainer,
+  typeContainerColumn,
+  typeContainerRow,
   typeBackground,
-  typeText,
+  typeTextCard,
+  typeTextDetails,
 });
