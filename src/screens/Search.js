@@ -15,12 +15,13 @@ const Search = () => {
   const renderPokemonList = () => {
     if (results.length == 0 || error) return <Loading />;
 
+    const data = results.results;
     let pokemonMap = new Map();
-    for (let i = 0; i < results.length; ++i) {
-      pokemonMap.set(results[i].name, results[i].url);
+    for (let i = 0; i < data.length; ++i) {
+      pokemonMap.set(data[i].name, data[i].url);
     }
 
-    return <PokemonSearch pokemonList={results} pokemonMap={pokemonMap} />;
+    return <PokemonSearch pokemonList={data} pokemonMap={pokemonMap} />;
   };
   return renderPokemonList();
 };
