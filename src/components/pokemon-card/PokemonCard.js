@@ -5,6 +5,7 @@ import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./pokemonCardStyle";
 import { commonStyles } from "../../styles/styleConfig";
 import { useNavigation } from "@react-navigation/native";
+import capitalize from "../../utils/capitalize";
 import PokemonType from "../pokemon-type/PokemonType";
 import PokemonCardImage from "./pokemon-card-image/PokemonCardImage";
 import useSearch from "../../hooks/useSearch";
@@ -33,11 +34,6 @@ const PokemonCard = ({ name, url }) => {
     name
   );
   const navigation = useNavigation();
-
-  const capitalize = (s) => {
-    if (typeof s !== "string") return "";
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  };
 
   const renderPokemonCard = () => {
     return (

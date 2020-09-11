@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import DetailsImages from "../components/pokemon-details/DetailsImages";
 import PokemonType from "../components/pokemon-type/PokemonType";
 import DetailsInfo from "../components/pokemon-details/details-info/DetailsInfo";
+import DetailsEvolution from "../components/pokemon-details/details-evolution/DetailsEvolution";
 
 const DetailTypesContainer = styled(View)`flx-i flx-row jcc mv2`;
 
@@ -34,16 +35,20 @@ const Details = ({ navigation, route }) => {
   ];
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
-      <ScrollView>
-        <DetailsImages images={details.sprites} />
-        <DetailTypesContainer>
-          <PokemonType types={details.types} details_flag={1} />
-        </DetailTypesContainer>
-        <DetailsInfo header={"Info:"} params={info_params} />
-        <DetailsInfo header={"Stats:"} params={stats_params} />
-      </ScrollView>
-    </View>
+    //TODO: DO MORE WITH SAFEAREA
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+      <View style={{ flex: 1, backgroundColor: "white" }}>
+        <ScrollView>
+          <DetailsImages images={details.sprites} />
+          <DetailTypesContainer>
+            <PokemonType types={details.types} details_flag={1} />
+          </DetailTypesContainer>
+          <DetailsInfo header={"Info:"} params={info_params} />
+          <DetailsInfo header={"Stats:"} params={stats_params} />
+          <DetailsEvolution id={details.id} />
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 

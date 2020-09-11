@@ -13,19 +13,22 @@ export default (URL, key, name = "") => {
     //Reset error on reload of results
     setError("");
 
-    let results_data = await AsyncStorage.getItem(key);
-    if (results_data !== null) {
-      //console.log("Async Storage", key);
-      setResults(JSON.parse(results_data));
-      return;
+    if (key) {
+      let results_data = await AsyncStorage.getItem(key);
+      if (results_data !== null) {
+        //console.log("Async Storage", key);
+        setResults(JSON.parse(results_data));
+        return;
+      }
     }
+
     return await axios
       .create({ url: URL })
       .get(URL, { cancelToken: source.token })
       .then((response) => {
         //console.log("Axios GET", key);
         setResults(response.data);
-        AsyncStorage.setItem(key, JSON.stringify(response.data));
+        if (key) AsyncStorage.setItem(key, JSON.stringify(response.data));
       })
       .catch((error) => {
         errorLog(error, setError, name);
