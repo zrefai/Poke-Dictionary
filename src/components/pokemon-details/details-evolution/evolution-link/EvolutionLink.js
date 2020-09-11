@@ -1,11 +1,9 @@
 import React from "react";
 import { Image, View, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./evolutionLinkStyles";
 import capitalize from "../../../../utils/capitalize";
 import useSearch from "../../../../hooks/useSearch";
-import { normalizeUIW } from "../../../../styles/styleConfig";
 
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon/";
 const EvolutionImageArrowContainer = styled(View)`aic jcc flx-row`;
