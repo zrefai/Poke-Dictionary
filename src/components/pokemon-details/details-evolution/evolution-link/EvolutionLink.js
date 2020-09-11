@@ -20,6 +20,14 @@ const EvolutionLink = ({ link }) => {
     `@POKEMON_${link.name.toUpperCase()}`
   );
 
+  const stringFormatter = (text) => {
+    const item_arr = text.split("-").map((item) => {
+      return capitalize(item);
+    });
+
+    return item_arr.join(" ");
+  };
+
   const renderInfo = (infoText) => {
     return (
       <EvolutionLinkContainer>
@@ -29,29 +37,24 @@ const EvolutionLink = ({ link }) => {
   };
 
   const renderLinkInfo = () => {
-    if (link.item !== null) {
-      const item_arr = link.item.split("-").map((item) => {
-        return capitalize(item);
-      });
-      return renderInfo(item_arr.join(" "));
-    }
-
-    if (link.happiness !== null) {
-      return renderInfo(`Happiness: ${link.happiness}`);
-    }
-
+    if (link.min_level) return renderInfo(`LVL ${link.min_level}`);
+    if (link.item) return renderInfo(stringFormatter(link.item));
+    if (link.happiness)
+      return renderInfo(`Evolves when Happiness: ${link.happiness}`);
     if (link.trigger_name === "trade") {
-      if (link.held_item !== null) {
-        const item_arr = link.held_item.split("-").map((item) => {
-          return capitalize(item);
-        });
-
-        return renderInfo(`Trade with ${item_arr.join(" ")}`);
+      if (link.held_item) {
+        return renderInfo(`Trade with ${stringFormatter(link.held_item)}`);
       }
       return renderInfo("Trade");
     }
+    if (link.held_item)
+      return renderInfo(`Evolves holding ${stringFormatter(link.held_item)}`);
+    if (link.location)
+      return renderInfo(`Evolve on ${stringFormatter(link.location)}`);
+    if (link.known_move)
+      return renderInfo(`Evolves learning ${stringFormatter(link.known_move)}`);
 
-    return renderInfo(`LVL ${link.min_level}`);
+    return renderInfo(`LVL NULL`);
   };
 
   const renderLinkImage = (uri, name) => {

@@ -35,6 +35,18 @@ const EvolutionChain = ({ url, evolution_ID }) => {
           : evoDet.held_item === null
           ? null
           : evoDet.held_item.name,
+      location:
+        evoDetLen == 0
+          ? null
+          : evoDet.location == null
+          ? null
+          : evoDet.location.name,
+      known_move:
+        evoDetLen == 0
+          ? null
+          : evoDet.known_move == null
+          ? null
+          : evoDet.known_move.name,
     });
     return data;
   };
@@ -47,7 +59,8 @@ const EvolutionChain = ({ url, evolution_ID }) => {
       let numOfEvolutions = evolutionData.evolves_to.length;
       const evoDetails = evolutionData.evolution_details;
       const evoDetails_len = evoDetails.length;
-
+      // console.log("Name:", evolutionData.species.name);
+      // console.log("EvoData:", evoDetails);
       evolutions = pushEvolutionData(
         evolutions,
         evoDetails[0],
@@ -60,7 +73,8 @@ const EvolutionChain = ({ url, evolution_ID }) => {
         for (let i = 1; i < numOfEvolutions; i++) {
           evoDetails = evolutionData.evolves_to[i].evolution_details;
           evoDetails_len = evoDetails.length;
-
+          // console.log("Name:", evolutionData.evolves_to[i].species.name);
+          // console.log("EvoData:", evoDetails);
           evolutions = pushEvolutionData(
             evolutions,
             evoDetails[0],
@@ -80,8 +94,10 @@ const EvolutionChain = ({ url, evolution_ID }) => {
 
   const renderEvolution = () => {
     if (results.length != 0) {
+      /* Typical rendering of evolutions is repeated 3 times. Add async storage by creating a 
+      useEvolutionSearch which processes the evolution chain at response, and saves it to async */
       const evoChain = processEvolutionData();
-
+      console.log(evoChain);
       return (
         <EvolutionInfoContainer>
           <EvolutionHeaderText>Evolutions: </EvolutionHeaderText>
