@@ -8,14 +8,14 @@ const linkNameText = {
   alignSelf: "center",
 };
 
-const lvlText = {
+const infoText = {
   fontFamily: "Pokemon_GB",
   fontSize: normalizeFont(9),
   paddingTop: 3,
-  alignSelf: "center",
+  textAlign: "center",
 };
 
 export const styles = StyleSheet.create({
   linkNameText,
-  lvlText,
+  infoText,
 });

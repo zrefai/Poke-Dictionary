@@ -12,7 +12,7 @@ const EvolutionImageArrowContainer = styled(View)`aic jcc flx-row`;
 const EvolutionLinkContainer = styled(View)`aic wp45 jcc`;
 const EvolutionLinkImage = styled(Image)`wp70 ar-1`;
 const EvolutionLinkText = styled(Text, styles.linkNameText)``;
-const EvolutionLinkLvlText = styled(Text, styles.lvlText)``;
+const EvolutionLinkInfoText = styled(Text, styles.infoText)`lh-solid`;
 
 const EvolutionLink = ({ link }) => {
   const [fetchPokemonResults, results, error] = useSearch(
@@ -20,12 +20,38 @@ const EvolutionLink = ({ link }) => {
     `@POKEMON_${link.name.toUpperCase()}`
   );
 
-  const renderLinkArrow = (lvl) => {
+  const renderInfo = (infoText) => {
     return (
       <EvolutionLinkContainer>
-        <EvolutionLinkLvlText>{`LVL ${lvl}`}</EvolutionLinkLvlText>
+        <EvolutionLinkInfoText>{infoText}</EvolutionLinkInfoText>
       </EvolutionLinkContainer>
     );
+  };
+
+  const renderLinkInfo = () => {
+    if (link.item !== null) {
+      const item_arr = link.item.split("-").map((item) => {
+        return capitalize(item);
+      });
+      return renderInfo(item_arr.join(" "));
+    }
+
+    if (link.happiness !== null) {
+      return renderInfo(`Happiness: ${link.happiness}`);
+    }
+
+    if (link.trigger_name === "trade") {
+      if (link.held_item !== null) {
+        const item_arr = link.held_item.split("-").map((item) => {
+          return capitalize(item);
+        });
+
+        return renderInfo(`Trade with ${item_arr.join(" ")}`);
+      }
+      return renderInfo("Trade");
+    }
+
+    return renderInfo(`LVL ${link.min_level}`);
   };
 
   const renderLinkImage = (uri, name) => {
@@ -41,7 +67,7 @@ const EvolutionLink = ({ link }) => {
     if (results.sprites !== undefined) {
       return (
         <EvolutionImageArrowContainer>
-          {renderLinkArrow(link.min_level)}
+          {renderLinkInfo()}
           {renderLinkImage(
             results.sprites.front_default,
             capitalize(link.name)

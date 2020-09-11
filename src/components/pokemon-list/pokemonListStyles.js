@@ -7,7 +7,7 @@ const loadMoreButton = {
   borderColor: "#20232a",
   alignSelf: "center",
   marginTop: "7%",
-  marginBottom: "11%",
+  marginBottom: "5%",
   backgroundColor: "#6BACEF",
 };
 

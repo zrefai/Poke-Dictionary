@@ -9,6 +9,7 @@ const nothingHereText = {
   fontFamily: "Pokemon_GB",
   fontSize: normalizeFont(10),
   color: "#898989",
+  textAlign: "center",
 };
 
 export const styles = StyleSheet.create({

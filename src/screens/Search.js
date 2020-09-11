@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import PokemonSearch from "../components/pokemon-search/PokemonSearch";
 import useSearch from "../hooks/useSearch";
 import Loading from "../components/loading/Loading";
@@ -23,7 +23,11 @@ const Search = () => {
 
     return <PokemonSearch pokemonList={data} pokemonMap={pokemonMap} />;
   };
-  return renderPokemonList();
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+      {renderPokemonList()}
+    </SafeAreaView>
+  );
 };
 
 export default Search;

@@ -9,7 +9,9 @@ import EvolutionLink from "../evolution-link/EvolutionLink";
 
 const EvolutionInfoContainer = styled(View)`mt5 mh6 mb4`;
 const EvolutionHeaderText = styled(Text, styles.detailsheaderText)``;
-const EvolutionLinksContainer = styled(View)`flx-wrap flx-row aic`;
+const EvolutionLinksContainer = styled(View, {
+  flexDirection: "column",
+})`aic`;
 
 const EvolutionChain = ({ url, evolution_ID }) => {
   const [fetchPokemonResults, results, error] = useSearch(
@@ -18,6 +20,25 @@ const EvolutionChain = ({ url, evolution_ID }) => {
     "EVOLUTION_CHAIN"
   );
 
+  const pushEvolutionData = (data, evoDet, evoDetLen, name, id) => {
+    data.push({
+      name: name,
+      ID: id,
+      min_level: evoDetLen == 0 ? 1 : evoDet.min_level,
+      trigger_name: evoDetLen == 0 ? null : evoDet.trigger.name,
+      item:
+        evoDetLen == 0 ? null : evoDet.item === null ? null : evoDet.item.name,
+      happiness: evoDetLen == 0 ? null : evoDet.min_happiness,
+      held_item:
+        evoDetLen == 0
+          ? null
+          : evoDet.held_item === null
+          ? null
+          : evoDet.held_item.name,
+    });
+    return data;
+  };
+
   const processEvolutionData = () => {
     let evolutions = [];
     let evolutionData = results.chain;
@@ -25,25 +46,28 @@ const EvolutionChain = ({ url, evolution_ID }) => {
     do {
       let numOfEvolutions = evolutionData.evolves_to.length;
       const evoDetails = evolutionData.evolution_details;
+      const evoDetails_len = evoDetails.length;
 
-      evolutions.push({
-        name: evolutionData.species.name,
-        ID: clipID(evolutionData.species.url),
-        min_level: evoDetails.length == 0 ? 1 : evoDetails[0].min_level,
-        trigger_name:
-          evoDetails.length == 0 ? null : evoDetails[0].trigger.name,
-      });
+      evolutions = pushEvolutionData(
+        evolutions,
+        evoDetails[0],
+        evoDetails_len,
+        evolutionData.species.name,
+        clipID(evolutionData.species.url)
+      );
 
       if (numOfEvolutions > 1) {
         for (let i = 1; i < numOfEvolutions; i++) {
           evoDetails = evolutionData.evolves_to[i].evolution_details;
-          evolutions.push({
-            name: evolutionData.evolves_to[i].species.name,
-            ID: clipID(evolutionData.evolves_to[i].species.url),
-            min_level: evoDetails.length == 0 ? 1 : evoDetails[0].min_level,
-            trigger_name:
-              evoDetails.length == 0 ? null : evoDetails[0].trigger.name,
-          });
+          evoDetails_len = evoDetails.length;
+
+          evolutions = pushEvolutionData(
+            evolutions,
+            evoDetails[0],
+            evoDetails_len,
+            evolutionData.evolves_to[i].species.name,
+            clipID(evolutionData.evolves_to[i].species.url)
+          );
         }
       }
       evolutionData = evolutionData.evolves_to[0];
@@ -51,14 +75,13 @@ const EvolutionChain = ({ url, evolution_ID }) => {
       evolutionData != undefined &&
       evolutionData.hasOwnProperty("evolves_to")
     );
-
     return evolutions;
   };
 
   const renderEvolution = () => {
     if (results.length != 0) {
       const evoChain = processEvolutionData();
-      console.log(evoChain);
+
       return (
         <EvolutionInfoContainer>
           <EvolutionHeaderText>Evolutions: </EvolutionHeaderText>
