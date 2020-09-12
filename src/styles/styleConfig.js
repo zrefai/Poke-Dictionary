@@ -30,7 +30,14 @@ const PokemonGB = {
   fontSize: normalizeFont(10),
 };
 
+const detailsHeaderTitleText = {
+  fontFamily: "Pokemon_GB",
+  fontSize: normalizeFont(15),
+  paddingTop: 5,
+};
+
 export const commonStyles = StyleSheet.create({
   PokemonGB,
   headerTitleText,
+  detailsHeaderTitleText,
 });

@@ -7,12 +7,6 @@ const detailsInfoColumnContainer = {
   marginTop: 12,
 };
 
-const detailsheaderText = {
-  fontFamily: "Pokemon_GB",
-  fontSize: normalizeFont(15),
-  paddingTop: 5,
-};
-
 const detailsInfoCell = {
   borderRadius: 5,
   borderWidth: 2,
@@ -29,7 +23,6 @@ const detailsInfoCellText = {
 
 export const styles = StyleSheet.create({
   detailsInfoColumnContainer,
-  detailsheaderText,
   detailsInfoCell,
   detailsInfoCellText,
 });

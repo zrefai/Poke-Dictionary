@@ -20,7 +20,21 @@ const loadMoreText = {
   color: "white",
 };
 
+const returnTextContainer = {
+  alignContent: "center",
+};
+
+const returnText = {
+  fontFamily: "Pokemon_GB",
+  fontSize: normalizeFont(10),
+  color: "#898989",
+  textAlign: "center",
+  paddingTop: 5,
+};
+
 export const styles = StyleSheet.create({
   loadMoreButton,
   loadMoreText,
+  returnTextContainer,
+  returnText,
 });

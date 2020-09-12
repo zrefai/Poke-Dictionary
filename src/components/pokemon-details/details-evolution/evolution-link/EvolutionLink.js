@@ -2,6 +2,7 @@ import React from "react";
 import { Image, View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./evolutionLinkStyles";
+import stringFormatter from "../../../../utils/stringFormatter";
 import capitalize from "../../../../utils/capitalize";
 import useSearch from "../../../../hooks/useSearch";
 
@@ -17,14 +18,6 @@ const EvolutionLink = ({ link }) => {
     `${pokemonURL}${link.ID}`,
     `@POKEMON_${link.name.toUpperCase()}`
   );
-
-  const stringFormatter = (text) => {
-    const item_arr = text.split("-").map((item) => {
-      return capitalize(item);
-    });
-
-    return item_arr.join(" ");
-  };
 
   const renderInfo = (infoText) => {
     return (

@@ -1,4 +1,4 @@
-export function uuid() {
+export default function uuid() {
   let d = new Date().getTime();
 
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {

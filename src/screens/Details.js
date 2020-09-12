@@ -5,6 +5,7 @@ import DetailsImages from "../components/pokemon-details/DetailsImages";
 import PokemonType from "../components/pokemon-type/PokemonType";
 import DetailsInfo from "../components/pokemon-details/details-info/DetailsInfo";
 import DetailsEvolution from "../components/pokemon-details/details-evolution/DetailsEvolution";
+import DetailsMovesList from "../components/pokemon-details/details-moves-list/DetailsMovesList";
 
 const DetailTypesContainer = styled(View)`flx-i flx-row jcc mv2`;
 
@@ -35,7 +36,6 @@ const Details = ({ navigation, route }) => {
   ];
 
   return (
-    //TODO: DO MORE WITH SAFEAREA
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView>
@@ -45,6 +45,7 @@ const Details = ({ navigation, route }) => {
           </DetailTypesContainer>
           <DetailsInfo header={"Info:"} params={info_params} />
           <DetailsInfo header={"Stats:"} params={stats_params} />
+          <DetailsMovesList movesList={details.moves} />
           <DetailsEvolution id={details.id} />
         </ScrollView>
       </View>
