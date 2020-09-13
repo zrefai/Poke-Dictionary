@@ -36,36 +36,22 @@ const DetailsDamageList = ({ typeList }) => {
 
   // console.log(results);
   const processDamageData = () => {
-    const keys = [
-      "double_damage_from",
-      "double_damage_to",
-      "half_damage_from",
-      "half_damage_to",
-      "no_damage_from",
-      "no_damage_to",
-    ];
-    const damageMap = new Map();
-
-    //Optimize with uniqueness
-
-    for (let i = 0; i < results.length; ++i) {
-      for (let j = 0; j < keys.length; ++j) {
-        if (!damageMap.has(keys[j])) {
-          damageMap.set(keys[j], []);
+    return results.reduce((acc, o) => {
+      Object.keys(o).forEach((key) => {
+        if (Array.isArray(o[key])) {
+          const match = acc.get(key),
+            items = o[key].map(({ name }) => name);
+          match
+            ? match.push(
+                ...items.filter((item) => {
+                  if (match.indexOf(item) === -1) return item;
+                })
+              )
+            : acc.set(key, items);
         }
-        const val = damageMap.get(keys[j]);
-        const curr = results[i][keys[j]];
-
-        for (let k = 0; k < curr.length; ++k) {
-          if (val.indexOf(curr[k].name) === -1) {
-            val.push(curr[k].name);
-          }
-        }
-        damageMap.set(keys[j], val);
-      }
-    }
-
-    return damageMap;
+      });
+      return acc;
+    }, new Map());
   };
 
   const renderNothing = () => {
@@ -97,6 +83,7 @@ const DetailsDamageList = ({ typeList }) => {
   const renderDamageList = () => {
     if (results.length > 0) {
       const damageMap = processDamageData();
+
       return damageKeys.map((damageKey) => {
         return (
           <DetailsDamageListCellContainer key={uuid()}>
