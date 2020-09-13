@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { errorLog } from "../utils/errorLog";
-import { clipID } from "../utils/clipID";
+import errorLog from "../utils/errorLog";
+import clipID from "../utils/clipID";
 import AsyncStorage from "@react-native-community/async-storage";
 
 export default (URL, key, name = "") => {
@@ -41,6 +41,8 @@ export default (URL, key, name = "") => {
     return data;
   };
 
+  /*Original variant of this algorithm is from stackoverflow. It was modified to fit the needs of this project
+  https://stackoverflow.com/questions/39112862/pokeapi-angular-how-to-get-pokemons-evolution-chain*/
   const processEvolutionData = (data) => {
     let evolutions = [];
 
@@ -81,6 +83,7 @@ export default (URL, key, name = "") => {
   const fetchEvolutionResults = async () => {
     //Reset error on reload of results
     setError("");
+    AsyncStorage.clear();
 
     if (key) {
       let results_data = await AsyncStorage.getItem(key);

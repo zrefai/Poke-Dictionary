@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { errorLog } from "../utils/errorLog";
+import errorLog from "../utils/errorLog";
 import AsyncStorage from "@react-native-community/async-storage";
 
 export default (URL, key, name = "") => {

@@ -8,9 +8,6 @@ import EvolutionLink from "../evolution-link/EvolutionLink";
 
 const EvolutionInfoContainer = styled(View)`mt5 mh6 mb4`;
 const EvolutionHeaderText = styled(Text, commonStyles.detailsHeaderTitleText)``;
-const EvolutionLinksContainer = styled(View, {
-  flexDirection: "column",
-})`aic`;
 
 const EvolutionChain = ({ url, evolution_ID }) => {
   const [fetchEvolutionResults, results, error] = useEvolutionSearch(
@@ -18,23 +15,6 @@ const EvolutionChain = ({ url, evolution_ID }) => {
     `@POKEMON_EVOLUTION_CHAIN_${evolution_ID}`,
     "EVOLUTION_CHAIN"
   );
-
-  const renderEvolution = () => {
-    if (results.length != 0) {
-      return (
-        <EvolutionInfoContainer>
-          <EvolutionHeaderText>Evolutions: </EvolutionHeaderText>
-          <EvolutionLinksContainer>
-            {evoChain.map((item) => {
-              return <EvolutionLink key={uuid()} link={item} />;
-            })}
-          </EvolutionLinksContainer>
-        </EvolutionInfoContainer>
-      );
-    }
-
-    return null;
-  };
 
   return (
     <EvolutionInfoContainer>

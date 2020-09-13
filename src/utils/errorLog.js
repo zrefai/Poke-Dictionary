@@ -1,5 +1,10 @@
-import { capitalize } from "./capitalize";
-export function errorLog(error, setError, name = "", masterListFlag = 0) {
+import capitalize from "./capitalize";
+export default function errorLog(
+  error,
+  setError,
+  name = "",
+  masterListFlag = 0
+) {
   if (error.response) {
     console.log(
       "The request was made and the server responded with a status code"
@@ -8,7 +13,7 @@ export function errorLog(error, setError, name = "", masterListFlag = 0) {
       `${
         masterListFlag
           ? "ERROR @MASTER_LIST"
-          : `ERROR @POKEMON_${captialize(name)}`
+          : `ERROR @POKEMON_${capitalize(name)}`
       }`
     );
     console.log(error.response.status);
@@ -19,7 +24,7 @@ export function errorLog(error, setError, name = "", masterListFlag = 0) {
       `${
         masterListFlag
           ? "ERROR @MASTER_LIST"
-          : `ERROR @POKEMON_${captialize(name)}`
+          : `ERROR @POKEMON_${capitalize(name)}`
       }`
     );
     console.log(error.request);
@@ -29,7 +34,7 @@ export function errorLog(error, setError, name = "", masterListFlag = 0) {
       `${
         masterListFlag
           ? "ERROR @MASTER_LIST"
-          : `ERROR @POKEMON_${captialize(name)}`
+          : `ERROR @POKEMON_${capitalize(name)}`
       }`
     );
     console.log("Error", error.message);

@@ -31,7 +31,7 @@ const DetailsMovesHeaderText = styled(
 
 const DetailsMovesList = ({ movesList }) => {
   const moveNameList = movesList.map((item) => {
-    return stringFormatter(item.move.name);
+    return stringFormatter(item.move.name, "-");
   });
 
   const renderMoveCell = (key, moveName) => {

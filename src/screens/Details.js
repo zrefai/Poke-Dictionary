@@ -6,6 +6,7 @@ import PokemonType from "../components/pokemon-type/PokemonType";
 import DetailsInfo from "../components/pokemon-details/details-info/DetailsInfo";
 import DetailsEvolution from "../components/pokemon-details/details-evolution/DetailsEvolution";
 import DetailsMovesList from "../components/pokemon-details/details-moves-list/DetailsMovesList";
+import DetailsDamageList from "../components/pokemon-details/details-damage/DetailsDamageList";
 
 const DetailTypesContainer = styled(View)`flx-i flx-row jcc mv2`;
 
@@ -46,6 +47,7 @@ const Details = ({ navigation, route }) => {
           <DetailsInfo header={"Info:"} params={info_params} />
           <DetailsInfo header={"Stats:"} params={stats_params} />
           <DetailsMovesList movesList={details.moves} />
+          <DetailsDamageList typeList={details.types} />
           <DetailsEvolution id={details.id} />
         </ScrollView>
       </View>

@@ -1,7 +1,7 @@
 import capitalize from "./capitalize";
 
-export default function stringFormatter(text) {
-  const item_arr = text.split("-").map((item) => {
+export default function stringFormatter(text, delimiter) {
+  const item_arr = text.split(delimiter).map((item) => {
     return capitalize(item);
   });
 

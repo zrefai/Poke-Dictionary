@@ -4,10 +4,13 @@ import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./pokemonTypeStyles";
 
 const PokemonTypeContainer = styled(View)``;
-const PokemonTypeBackground = styled(View, styles.typeBackground)``;
 const PokemonTypeText = styled(Text)``;
 
-const PokemonType = ({ types, details_flag = 0 }) => {
+const PokemonType = ({ types, details_flag = 0, damage_flag = 0 }) => {
+  const PokemonTypeBackground = styled(
+    View,
+    damage_flag ? styles.typeBackgroundDamage : styles.typeBackground
+  )``;
   const typeColor = (type) => {
     switch (type) {
       case "grass":
@@ -56,13 +59,23 @@ const PokemonType = ({ types, details_flag = 0 }) => {
       <PokemonTypeBackground
         key={key}
         style={{
-          backgroundColor: typeColor(pokemonType.name),
+          backgroundColor: typeColor(
+            damage_flag ? pokemonType : pokemonType.name
+          ),
         }}
       >
         <PokemonTypeText
-          style={details_flag ? styles.typeTextDetails : styles.typeTextCard}
+          style={
+            details_flag
+              ? styles.typeTextDetails
+              : damage_flag
+              ? styles.typeTextDamage
+              : styles.typeTextCard
+          }
         >
-          {pokemonType.name.toUpperCase()}
+          {damage_flag
+            ? pokemonType.toUpperCase()
+            : pokemonType.name.toUpperCase()}
         </PokemonTypeText>
       </PokemonTypeBackground>
     );
@@ -71,12 +84,14 @@ const PokemonType = ({ types, details_flag = 0 }) => {
   return (
     <PokemonTypeContainer
       style={
-        details_flag ? styles.typeContainerRow : styles.typeContainerColumn
+        details_flag || damage_flag
+          ? styles.typeContainerRow
+          : styles.typeContainerColumn
       }
     >
       {types
         ? types.map((type, index) => {
-            return renderPokemonType(type.type, index);
+            return renderPokemonType(damage_flag ? type : type.type, index);
           })
         : undefined}
     </PokemonTypeContainer>
