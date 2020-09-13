@@ -10,10 +10,6 @@ const pokemonCardContainer = {
   padding: 6,
 };
 
-const pokemonCardImageContainer = {
-  flex: 2,
-};
-
 const pokemonCardTextContainer = {
   flex: 3,
   alignContent: "center",
@@ -25,16 +21,8 @@ const pokemonCardText = {
   paddingTop: 1,
 };
 
-const pokemonCardTypeContainer = {
-  alignContent: "center",
-  justifyContent: "center",
-  marginRight: 3,
-};
-
 export const styles = StyleSheet.create({
   pokemonCardContainer,
-  pokemonCardImageContainer,
   pokemonCardText,
   pokemonCardTextContainer,
-  pokemonCardTypeContainer,
 });

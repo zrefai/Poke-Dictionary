@@ -8,17 +8,23 @@ import {
 } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import { styles } from "./pokemonListStyles";
+import { regularText } from "../../styles/styleConfig";
 import uuid from "../../utils/uuid";
 import PokemonCard from "../pokemon-card/PokemonCard";
 
-const LoadMoreButton = styled(TouchableOpacity, styles.loadMoreButton)`aic`;
-const LoadMoreButtonText = styled(Text, styles.loadMoreText)``;
-const ReturnTextContainer = styled(
-  View,
-  styles.returnTextContainer
-)`asc mt7 ma6`;
-const ReturnText = styled(Text, styles.returnText)`lh-solid`;
 const NothingView = styled(View)`mv5`;
+const LoadMoreButton = styled(TouchableOpacity, styles.loadMoreButton)`aic`;
+const LoadMoreButtonText = styled(
+  Text,
+  regularText(12, 7, { color: "white", paddingBottom: 3, paddingHorizontal: 6 })
+)``;
+const ReturnTextContainer = styled(View, {
+  alignContent: "center",
+})`asc mt7 ma6`;
+const ReturnText = styled(
+  Text,
+  regularText(10, 5, { color: "#898989" })
+)`lh-solid`;
 
 const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
   const renderLoadMore = () => {

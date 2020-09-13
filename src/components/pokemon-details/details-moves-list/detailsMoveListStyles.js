@@ -1,11 +1,5 @@
 import { StyleSheet } from "react-native";
-import { normalizeFont, normalizeUIW } from "../../../styles/styleConfig";
-
-const detailsMovesListColumnContainer = {
-  flexDirection: "column",
-  marginTop: 12,
-  alignItems: "center",
-};
+import { normalizeUIW } from "../../../styles/styleConfig";
 
 const detailsMovesMoreButton = {
   borderRadius: 6,
@@ -16,15 +10,6 @@ const detailsMovesMoreButton = {
   backgroundColor: "#6BACEF",
 };
 
-const detailsMovesMoreButtonText = {
-  paddingTop: 7,
-  paddingBottom: 3,
-  paddingHorizontal: 6,
-  fontFamily: "Pokemon_GB",
-  fontSize: normalizeFont(9),
-  color: "white",
-};
-
 const detailsMoveListCell = {
   borderRadius: 5,
   borderWidth: 2,
@@ -33,19 +18,7 @@ const detailsMoveListCell = {
   maxWidth: normalizeUIW(60),
 };
 
-const detailsMovesListCellText = {
-  fontFamily: "Pokemon_GB",
-  paddingTop: 5,
-  paddingBottom: 1,
-  marginVertical: 2,
-  fontSize: normalizeFont(11),
-  textAlign: "center",
-};
-
 export const styles = StyleSheet.create({
-  detailsMovesListColumnContainer,
   detailsMoveListCell,
-  detailsMovesListCellText,
   detailsMovesMoreButton,
-  detailsMovesMoreButtonText,
 });

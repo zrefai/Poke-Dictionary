@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
-import { commonStyles } from "../../../../styles/styleConfig";
-import uuid from "../../../../utils/uuid";
-import useEvolutionSearch from "../../../../hooks/useEvolutionSearch";
-import EvolutionLink from "../evolution-link/EvolutionLink";
+import { commonStyles } from "../../../styles/styleConfig";
+import uuid from "../../../utils/uuid";
+import useEvolutionSearch from "../../../hooks/useEvolutionSearch";
+import EvolutionLink from "./EvolutionLink";
 
 const EvolutionInfoContainer = styled(View)`mt5 mh6 mb4`;
 const EvolutionHeaderText = styled(Text, commonStyles.detailsHeaderTitleText)``;

@@ -18,6 +18,16 @@ export const normalizeFont = (size) => {
   return Math.round(PixelRatio.roundToNearestPixel(size * scale));
 };
 
+export const regularText = (size, pt = 3, others = {}) => {
+  return {
+    fontFamily: "Pokemon_GB",
+    fontSize: normalizeFont(size),
+    paddingTop: pt,
+    textAlign: "center",
+    ...others,
+  };
+};
+
 const headerTitleText = {
   fontFamily: "Pokemon_GB",
   paddingTop: 5,

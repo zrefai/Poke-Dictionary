@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { errorLog } from "../utils/errorLog";
-import clipID from "../utils/clipID";
 import AsyncStorage from "@react-native-community/async-storage";
 
 export default (URLs) => {

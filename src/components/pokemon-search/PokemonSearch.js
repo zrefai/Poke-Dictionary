@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
-import { styles } from "./PokemonSearchStyles";
+import { regularText } from "../../styles/styleConfig";
 import SearchBar from "../search-bar/SearchBar";
 import PokemonList from "../pokemon-list/PokemonList";
 
 const SearchContainer = styled(View)`flx-i bg-white`;
-const NothingHereContainer = styled(
-  View,
-  styles.nothingHereContainer
-)`asc mt7 ma6`;
-const NothingHereText = styled(Text, styles.nothingHereText)`pt1 lh-solid `;
+const NothingHereContainer = styled(View, {
+  alignContent: "center",
+})`asc mt7 ma6`;
+const NothingHereText = styled(
+  Text,
+  regularText(10, 2, { color: "#898989" })
+)`pt1 lh-solid `;
 
 const PokemonSearch = ({ pokemonList, pokemonMap }) => {
   const [term, setTerm] = useState("");

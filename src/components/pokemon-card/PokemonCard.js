@@ -18,14 +18,11 @@ const PokemonCardTextContainer = styled(
   View,
   styles.pokemonCardTextContainer
 )`jcc`;
-const PokemonCardImageContainer = styled(
-  View,
-  styles.pokemonCardImageContainer
-)``;
-const PokemonCardTypeContainer = styled(
-  View,
-  styles.pokemonCardTypeContainer
-)``;
+const PokemonCardImageContainer = styled(View, { flex: 2 })``;
+const PokemonCardTypeContainer = styled(View, {
+  alignContent: "center",
+  marginRight: 3,
+})`jcc `;
 
 const PokemonCard = ({ name, url }) => {
   const [fetchPokemonResults, results, error] = useSearch(

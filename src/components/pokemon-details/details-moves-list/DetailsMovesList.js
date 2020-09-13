@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import { styles } from "./detailsMoveListStyles";
-import { commonStyles } from "../../../styles/styleConfig";
+import { commonStyles, regularText } from "../../../styles/styleConfig";
 import uuid from "../../../utils/uuid";
 import stringFormatter from "../../../utils/stringFormatter";
 
@@ -14,16 +14,15 @@ const DetailsMovesListButton = styled(
 )``;
 const DetailsMovesListButtonText = styled(
   Text,
-  styles.detailsMovesMoreButtonText
+  regularText(9, 7, { color: "white", paddingHorizontal: 6, paddingBottom: 3 })
 )``;
-const DetailsMovesListContainer = styled(
-  View,
-  styles.detailsMovesListColumnContainer
-)``;
+const DetailsMovesListContainer = styled(View, {
+  flexDirection: "column",
+})`mt4 aic`;
 const DetailsMovesListCellText = styled(
   Text,
-  styles.detailsMovesListCellText
-)``;
+  regularText(11, 5, { paddingBottom: 1 })
+)`mv1`;
 const DetailsMovesHeaderText = styled(
   Text,
   commonStyles.detailsHeaderTitleText

@@ -3,10 +3,10 @@ import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import DetailsImages from "../components/pokemon-details/DetailsImages";
 import PokemonType from "../components/pokemon-type/PokemonType";
-import DetailsInfo from "../components/pokemon-details/details-info/DetailsInfo";
+import DetailsInfo from "../components/pokemon-details/DetailsInfo";
 import DetailsEvolution from "../components/pokemon-details/details-evolution/DetailsEvolution";
 import DetailsMovesList from "../components/pokemon-details/details-moves-list/DetailsMovesList";
-import DetailsDamageList from "../components/pokemon-details/details-damage/DetailsDamageList";
+import DetailsDamageList from "../components/pokemon-details/DetailsDamageList";
 
 const DetailTypesContainer = styled(View)`flx-i flx-row jcc mv2`;
 

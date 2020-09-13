@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import clipID from "../../../utils/clipID";
-import EvolutionChain from "./evolution-chain/EvolutionChain";
+import EvolutionChain from "./EvolutionChain";
 import useSearch from "../../../hooks/useSearch";
 
 const pokemonSpeciesURL = "https://pokeapi.co/api/v2/pokemon-species/";

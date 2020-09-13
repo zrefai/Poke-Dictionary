@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
-import { styles } from "./pokemonCardImageStyles";
+import { Image } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 
-const PokemonImage = styled(Image, styles.pokemonImage)``;
+const PokemonImage = styled(Image, { width: "70%", marginHorizontal: 6 })`ar-1`;
 
 const PokemonCardImage = ({ uri }) => {
   const renderImage = () => {

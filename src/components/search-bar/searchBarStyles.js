@@ -18,13 +18,6 @@ const backgroundStyle = {
   elevation: 1,
 };
 
-const inputStyle = {
-  flex: 1,
-  fontSize: normalizeFont(13),
-  paddingTop: 5,
-  fontFamily: "Pokemon_GB",
-};
-
 const iconStyle = {
   fontSize: normalizeFont(23),
   alignSelf: "center",
@@ -34,6 +27,5 @@ const iconStyle = {
 
 export const styles = StyleSheet.create({
   backgroundStyle,
-  inputStyle,
   iconStyle,
 });

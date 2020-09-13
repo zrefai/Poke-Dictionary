@@ -1,17 +1,17 @@
 import React from "react";
 import { Image, View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
-import { styles } from "./evolutionLinkStyles";
-import stringFormatter from "../../../../utils/stringFormatter";
-import capitalize from "../../../../utils/capitalize";
-import useSearch from "../../../../hooks/useSearch";
+import { regularText } from "../../../styles/styleConfig";
+import stringFormatter from "../../../utils/stringFormatter";
+import capitalize from "../../../utils/capitalize";
+import useSearch from "../../../hooks/useSearch";
 
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon/";
 const EvolutionInfoImageContainer = styled(View)`aic jcc flx-row`;
 const EvolutionLinkContainer = styled(View)`aic wp45 jcc`;
 const EvolutionLinkImage = styled(Image)`wp70 ar-1`;
-const EvolutionLinkText = styled(Text, styles.linkNameText)``;
-const EvolutionLinkInfoText = styled(Text, styles.infoText)`lh-solid`;
+const EvolutionLinkText = styled(Text, regularText(9))``;
+const EvolutionLinkInfoText = styled(Text, regularText(9))`lh-solid`;
 
 const EvolutionLink = ({ link }) => {
   const [fetchPokemonResults, results, error] = useSearch(

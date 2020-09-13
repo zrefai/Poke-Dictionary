@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
-import { commonStyles } from "../../../styles/styleConfig";
-import { styles } from "./detailsDamageListStyles";
+import { commonStyles, regularText } from "../../styles/styleConfig";
 import { styled } from "@shipt/react-native-tachyons";
-import uuid from "../../../utils/uuid";
-import stringFormatter from "../../../utils/stringFormatter";
-import useTypeSearch from "../../../hooks/useTypeSearch";
-import PokemonType from "../../pokemon-type/PokemonType";
+import uuid from "../../utils/uuid";
+import stringFormatter from "../../utils/stringFormatter";
+import useTypeSearch from "../../hooks/useTypeSearch";
+import PokemonType from "../pokemon-type/PokemonType";
 
 const DetailsDamageListCellContainer = styled(View)`flx-i aic jcc flx-row mv3`;
 const DetailsDamageCellContainer = styled(View)`flx-i aic wp45 jcc`;
-const DetailsDamageInfoText = styled(Text, styles.infoText)`lh-solid`;
-const DetailsDamageNothingText = styled(Text, styles.nothingText)``;
+const DetailsDamageInfoText = styled(Text, regularText(8))`lh-solid`;
+const DetailsDamageNothingText = styled(Text, regularText(8))``;
 const DetailsDamageContainer = styled(View, {
   flexDirection: "column",
 })`mt5 mh6`;
