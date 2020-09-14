@@ -34,6 +34,18 @@ const headerTitleText = {
   fontSize: normalizeFont(9),
 };
 
+const headerStyle = {
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+
+  elevation: 3,
+};
+
 const PokemonGB = {
   paddingTop: 5,
   fontFamily: "Pokemon_GB",
@@ -49,5 +61,6 @@ const detailsHeaderTitleText = {
 export const commonStyles = StyleSheet.create({
   PokemonGB,
   headerTitleText,
+  headerStyle,
   detailsHeaderTitleText,
 });

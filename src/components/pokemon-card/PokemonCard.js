@@ -25,12 +25,12 @@ const PokemonCardTypeContainer = styled(View, {
 })`jcc `;
 
 const PokemonCard = ({ name, url }) => {
+  const navigation = useNavigation();
   const [fetchPokemonResults, results, error] = useSearch(
     url,
     `@POKEMON_${name.toUpperCase()}`,
     name
   );
-  const navigation = useNavigation();
 
   const renderPokemonCard = () => {
     return (

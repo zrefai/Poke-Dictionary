@@ -80,18 +80,6 @@ const PokemonType = ({
   };
 
   const determineTypeColor = (type) => {
-    // console.log(
-    //   "Type: ",
-    //   type,
-    //   "Flag: ",
-    //   `${
-    //     damage_flag
-    //       ? "Damage Flag: 1"
-    //       : details_flag
-    //       ? "Details Flag: 1"
-    //       : "Moves Flag: 1"
-    //   }`
-    // );
     if (damage_flag) return { backgroundColor: typeColor(type) };
     return { backgroundColor: typeColor(type.name) };
   };
@@ -115,10 +103,8 @@ const PokemonType = ({
 
   return (
     <PokemonTypeContainer style={determineDirection()}>
-      {/* {console.log("-----------------------------------------------------")} */}
       {types
         ? types.map((type, index) => {
-            // console.log(type);
             return renderPokemonType(
               damage_flag ? type : moves_flag ? type : type.type,
               index

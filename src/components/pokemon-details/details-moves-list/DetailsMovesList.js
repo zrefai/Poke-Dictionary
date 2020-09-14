@@ -3,9 +3,10 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import { styles } from "./detailsMovesListStyles";
 import { commonStyles, regularText } from "../../../styles/styleConfig";
+import { useNavigation } from "@react-navigation/native";
 import uuid from "../../../utils/uuid";
 import stringFormatter from "../../../utils/stringFormatter";
-import DetailsMovesCard from "./DetailsMovesCard";
+import MoveCard from "../../pokemon-move/MoveCard";
 
 const DetailsMovesContainer = styled(View)`mt5 mh6`;
 const DetailsMovesListButton = styled(
@@ -24,7 +25,8 @@ const DetailsMovesHeaderText = styled(
   commonStyles.detailsHeaderTitleText
 )``;
 
-const DetailsMovesList = ({ movesList }) => {
+const DetailsMovesList = ({ name, movesList }) => {
+  const navigation = useNavigation();
   const movesNameList = movesList.map((item) => {
     return { name: stringFormatter(item.move.name, "-"), url: item.move.url };
   });
@@ -35,13 +37,23 @@ const DetailsMovesList = ({ movesList }) => {
       <DetailsMovesListContainer>
         {movesNameList.slice(0, 5).map((item) => {
           return (
-            <DetailsMovesCard key={uuid()} name={item.name} url={item.url} />
+            <MoveCard
+              key={uuid()}
+              name={item.name}
+              url={item.url}
+              details_flag={1}
+            />
           );
         })}
       </DetailsMovesListContainer>
       {/* TODO: fix this to navigate to fleshed out moves page */}
       <DetailsMovesListButton
-        onPress={() => console.log("Does nothing...for now")}
+        onPress={() =>
+          navigation.navigate("Moves", {
+            name: `${name}'s Moves`,
+            moves: movesList,
+          })
+        }
       >
         <DetailsMovesListButtonText>SEE ALL</DetailsMovesListButtonText>
       </DetailsMovesListButton>

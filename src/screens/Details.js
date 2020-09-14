@@ -1,6 +1,7 @@
 import React from "react";
 import { View, ScrollView, SafeAreaView } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
+import capitalize from "../utils/capitalize";
 import DetailsImages from "../components/pokemon-details/DetailsImages";
 import PokemonType from "../components/pokemon-type/PokemonType";
 import DetailsInfo from "../components/pokemon-details/DetailsInfo";
@@ -46,7 +47,10 @@ const Details = ({ navigation, route }) => {
           </DetailTypesContainer>
           <DetailsInfo header={"Info:"} params={info_params} />
           <DetailsInfo header={"Stats:"} params={stats_params} />
-          <DetailsMovesList movesList={details.moves} />
+          <DetailsMovesList
+            name={capitalize(details.name)}
+            movesList={details.moves}
+          />
           <DetailsEvolution id={details.id} />
           <DetailsDamageList typeList={details.types} />
         </ScrollView>

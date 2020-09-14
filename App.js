@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { commonStyles } from "./src/styles/styleConfig";
 import Search from "./src/screens/Search";
 import Details from "./src/screens/Details";
+import Moves from "./src/screens/Moves";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -27,17 +28,7 @@ export default function App() {
           component={Search}
           options={{
             title: "Pokemon Search",
-            headerStyle: {
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.22,
-              shadowRadius: 2.22,
-
-              elevation: 3,
-            },
+            headerStyle: commonStyles.headerStyle,
             headerTitleStyle: commonStyles.headerTitleText,
           }}
         />
@@ -46,17 +37,17 @@ export default function App() {
           component={Details}
           options={({ route }) => ({
             title: route.params.name,
-            headerStyle: {
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.22,
-              shadowRadius: 2.22,
-
-              elevation: 3,
-            },
+            headerStyle: commonStyles.headerStyle,
+            headerTitleStyle: commonStyles.headerTitleText,
+            headerBackTitle: "Back",
+          })}
+        />
+        <Stack.Screen
+          name="Moves"
+          component={Moves}
+          options={({ route }) => ({
+            title: route.params.name,
+            headerStyle: commonStyles.headerStyle,
             headerTitleStyle: commonStyles.headerTitleText,
             headerBackTitle: "Back",
           })}
