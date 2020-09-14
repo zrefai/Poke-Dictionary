@@ -28,6 +28,16 @@ export const regularText = (size, pt = 3, others = {}) => {
   };
 };
 
+export const stackScreenNormalOptions = (route) => {
+  return {
+    title: route.params.name,
+    headerStyle: commonStyles.headerStyle,
+    headerTitleStyle: commonStyles.headerTitleText,
+    headerBackTitleStyle: commonStyles.headerTitleText,
+    headerBackTitle: "Back",
+  };
+};
+
 const headerTitleText = {
   fontFamily: "Pokemon_GB",
   paddingTop: 5,
