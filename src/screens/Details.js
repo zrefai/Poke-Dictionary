@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, SafeAreaView } from "react-native";
+import { View, ScrollView, SafeAreaView } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import DetailsImages from "../components/pokemon-details/DetailsImages";
 import PokemonType from "../components/pokemon-type/PokemonType";
@@ -47,8 +47,8 @@ const Details = ({ navigation, route }) => {
           <DetailsInfo header={"Info:"} params={info_params} />
           <DetailsInfo header={"Stats:"} params={stats_params} />
           <DetailsMovesList movesList={details.moves} />
-          <DetailsDamageList typeList={details.types} />
           <DetailsEvolution id={details.id} />
+          <DetailsDamageList typeList={details.types} />
         </ScrollView>
       </View>
     </SafeAreaView>

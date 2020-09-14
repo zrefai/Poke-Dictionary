@@ -6,7 +6,12 @@ import { normalizeUIW, regularText } from "../../styles/styleConfig";
 const PokemonTypeContainer = styled(View)`flx-wrap jcc aic`;
 const PokemonTypeText = styled(Text)``;
 
-const PokemonType = ({ types, details_flag = 0, damage_flag = 0 }) => {
+const PokemonType = ({
+  types,
+  details_flag = 0,
+  damage_flag = 0,
+  moves_flag = 0,
+}) => {
   const typeBorder = (size) => {
     return {
       borderRadius: 5,
@@ -18,7 +23,7 @@ const PokemonType = ({ types, details_flag = 0, damage_flag = 0 }) => {
 
   const PokemonTypeBackground = styled(
     View,
-    damage_flag ? typeBorder(18) : typeBorder(20)
+    damage_flag ? typeBorder(18) : moves_flag ? typeBorder(19) : typeBorder(20)
   )``;
 
   const typeColor = (type) => {
@@ -69,10 +74,24 @@ const PokemonType = ({ types, details_flag = 0, damage_flag = 0 }) => {
       return regularText(10, 4.5, { color: "white", paddingHorizontal: 5 });
     if (damage_flag)
       return regularText(7, 4, { color: "white", paddingBottom: 1 });
+    if (moves_flag)
+      return regularText(7, 4, { color: "white", paddingBottom: 1 });
     return regularText(8.5, 4, { color: "white" });
   };
 
   const determineTypeColor = (type) => {
+    // console.log(
+    //   "Type: ",
+    //   type,
+    //   "Flag: ",
+    //   `${
+    //     damage_flag
+    //       ? "Damage Flag: 1"
+    //       : details_flag
+    //       ? "Details Flag: 1"
+    //       : "Moves Flag: 1"
+    //   }`
+    // );
     if (damage_flag) return { backgroundColor: typeColor(type) };
     return { backgroundColor: typeColor(type.name) };
   };
@@ -96,9 +115,14 @@ const PokemonType = ({ types, details_flag = 0, damage_flag = 0 }) => {
 
   return (
     <PokemonTypeContainer style={determineDirection()}>
+      {/* {console.log("-----------------------------------------------------")} */}
       {types
         ? types.map((type, index) => {
-            return renderPokemonType(damage_flag ? type : type.type, index);
+            // console.log(type);
+            return renderPokemonType(
+              damage_flag ? type : moves_flag ? type : type.type,
+              index
+            );
           })
         : undefined}
     </PokemonTypeContainer>

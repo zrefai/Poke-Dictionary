@@ -16,6 +16,7 @@ const EvolutionChain = ({ url, evolution_ID }) => {
     "EVOLUTION_CHAIN"
   );
 
+  console.log(results);
   return (
     <EvolutionInfoContainer>
       <EvolutionHeaderText>Evolutions: </EvolutionHeaderText>

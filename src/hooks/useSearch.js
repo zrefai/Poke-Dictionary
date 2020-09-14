@@ -15,6 +15,7 @@ export default (URL, key, name = "") => {
 
     if (key) {
       let results_data = await AsyncStorage.getItem(key);
+      //console.log(`Axios Results with ${key}:`, !!results_data);
       if (results_data !== null) {
         //console.log("Async Storage", key);
         setResults(JSON.parse(results_data));
@@ -26,7 +27,7 @@ export default (URL, key, name = "") => {
       .create({ url: URL })
       .get(URL, { cancelToken: source.token })
       .then((response) => {
-        //console.log("Axios GET", key);
+        //console.log("Axios GET", url);
         setResults(response.data);
         if (key) AsyncStorage.setItem(key, JSON.stringify(response.data));
       })

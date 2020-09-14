@@ -83,14 +83,15 @@ export default (URL, key, name = "") => {
   const fetchEvolutionResults = async () => {
     //Reset error on reload of results
     setError("");
-    AsyncStorage.clear();
 
     if (key) {
       let results_data = await AsyncStorage.getItem(key);
       if (results_data !== null) {
         //console.log("Async Storage", key);
-        setResults(JSON.parse(results_data));
-        return;
+        if (Array.isArray(results_data)) {
+          setResults(JSON.parse(results_data));
+          return;
+        }
       }
     }
 

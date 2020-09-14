@@ -8,7 +8,7 @@ import useTypeSearch from "../../hooks/useTypeSearch";
 import PokemonType from "../pokemon-type/PokemonType";
 
 const DetailsDamageListCellContainer = styled(View)`flx-i aic jcc flx-row mv3`;
-const DetailsDamageCellContainer = styled(View)`flx-i aic wp45 jcc`;
+const DetailsDamageCellContainer = styled(View)`aic wp45 jcc`;
 const DetailsDamageInfoText = styled(Text, regularText(8))`lh-solid`;
 const DetailsDamageNothingText = styled(Text, regularText(8))``;
 const DetailsDamageContainer = styled(View, {
@@ -19,14 +19,14 @@ const DetailsDamageListHeaderText = styled(
   commonStyles.detailsHeaderTitleText
 )``;
 
-const damageKeys = [
-  "double_damage_from",
-  "half_damage_from",
-  "no_damage_from",
-  "double_damage_to",
-  "half_damage_to",
-  "no_damage_to",
-];
+const damageTextMap = {
+  double_damage_from: "x2 DMG From",
+  half_damage_from: "x1/2 DMG From",
+  no_damage_from: "No DMG From",
+  double_damage_to: "x2 DMG To",
+  half_damage_to: "x1/2 DMG To",
+  no_damage_to: "No DMG To",
+};
 
 const DetailsDamageList = ({ typeList }) => {
   const [fetchTypeResults, results, error] = useTypeSearch(
@@ -61,11 +61,11 @@ const DetailsDamageList = ({ typeList }) => {
     );
   };
 
-  const renderDamageInfo = (infoText) => {
+  const renderDamageInfo = (damageKey) => {
     return (
       <DetailsDamageCellContainer>
         <DetailsDamageInfoText>
-          {stringFormatter(infoText, "_")}
+          {damageTextMap[damageKey]}
         </DetailsDamageInfoText>
       </DetailsDamageCellContainer>
     );
@@ -82,6 +82,7 @@ const DetailsDamageList = ({ typeList }) => {
   const renderDamageList = () => {
     if (results.length > 0) {
       const damageMap = processDamageData();
+      const damageKeys = Object.keys(damageTextMap);
 
       return damageKeys.map((damageKey) => {
         return (
