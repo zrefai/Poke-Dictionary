@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, ScrollView, SafeAreaView } from "react-native";
-import { styled } from "@shipt/react-native-tachyons";
 import MoveCard from "../components/pokemon-move/MoveCard";
 import uuid from "../utils/uuid";
 

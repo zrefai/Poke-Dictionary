@@ -27,7 +27,7 @@ export default (URL, key, name = "") => {
       .create({ url: URL })
       .get(URL, { cancelToken: source.token })
       .then((response) => {
-        //console.log("Axios GET", url);
+        //console.log("Axios GET", URL);
         setResults(response.data);
         if (key) AsyncStorage.setItem(key, JSON.stringify(response.data));
       })

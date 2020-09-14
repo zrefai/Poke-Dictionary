@@ -51,7 +51,11 @@ export default function App() {
         <Stack.Screen
           name="Settings"
           component={Settings}
-          options={{ title: "Settings", headerBackTitle: "Back" }}
+          options={{
+            title: "Settings",
+            headerStyle: commonStyles.headerStyle,
+            headerBackTitle: "Back",
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
