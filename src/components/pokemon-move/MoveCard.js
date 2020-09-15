@@ -23,11 +23,7 @@ const MovesCardContainer = styled(
 )`flx-i flx-row`;
 
 const MoveCard = ({ name, url, details_flag = 0 }) => {
-  const [fetchMoveResults, results, error] = useSearch(
-    url,
-    `@POKEMON_MOVE_${clipID(url)}`,
-    name
-  );
+  const [results, error] = useSearch(url, `@POKEMON_MOVE_${clipID(url)}`, name);
 
   const MovesStatsText = styled(
     Text,
