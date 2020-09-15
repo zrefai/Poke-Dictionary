@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, Text } from "react-native";
-import { commonStyles, regularText } from "../../styles/styleConfig";
+import { regularText } from "../../styles/styleConfig";
 import { styled } from "@shipt/react-native-tachyons";
 import uuid from "../../utils/uuid";
-import stringFormatter from "../../utils/stringFormatter";
 import useTypeSearch from "../../hooks/useTypeSearch";
 import PokemonType from "../pokemon-type/PokemonType";
+import StyledText from "../../styles/TextStyle";
 
 const DetailsDamageListCellContainer = styled(View)`flx-i aic jcc flx-row mv3`;
 const DetailsDamageCellContainer = styled(View)`aic wp45 jcc`;
 const DetailsDamageInfoText = styled(Text, regularText(8))`lh-solid`;
-const DetailsDamageNothingText = styled(Text, regularText(8))``;
+const DetailsDamageCellSeparator = styled(View)`mh2`;
 const DetailsDamageContainer = styled(View, {
   flexDirection: "column",
 })`mt5 mh6`;
-const DetailsDamageListHeaderText = styled(
-  Text,
-  commonStyles.detailsHeaderTitleText
-)``;
 
 const damageTextMap = {
   double_damage_from: "x2 DMG From",
@@ -56,7 +52,9 @@ const DetailsDamageList = ({ typeList }) => {
   const renderNothing = () => {
     return (
       <DetailsDamageCellContainer>
-        <DetailsDamageNothingText>Nothing</DetailsDamageNothingText>
+        <StyledText size={8} padtop={5}>
+          Nothing
+        </StyledText>
       </DetailsDamageCellContainer>
     );
   };
@@ -88,6 +86,7 @@ const DetailsDamageList = ({ typeList }) => {
         return (
           <DetailsDamageListCellContainer key={uuid()}>
             {renderDamageInfo(damageKey)}
+            <DetailsDamageCellSeparator />
             {damageMap.get(damageKey).length > 0
               ? renderDamageType(damageMap.get(damageKey))
               : renderNothing()}
@@ -100,7 +99,9 @@ const DetailsDamageList = ({ typeList }) => {
 
   return (
     <DetailsDamageContainer>
-      <DetailsDamageListHeaderText>Damage Stats:</DetailsDamageListHeaderText>
+      <StyledText size={15} padtop={5} options={{ textAlign: "left" }}>
+        Damage Stats:
+      </StyledText>
       {renderDamageList()}
     </DetailsDamageContainer>
   );

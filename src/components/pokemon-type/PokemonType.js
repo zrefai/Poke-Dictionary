@@ -2,6 +2,9 @@ import React from "react";
 import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { normalizeUIW, regularText } from "../../styles/styleConfig";
+import { useSelector } from "react-redux";
+import { unown } from "../../selectors/index";
+import typeColor from "./typeColor";
 
 const PokemonTypeContainer = styled(View)`flx-wrap jcc aic`;
 const PokemonTypeText = styled(Text)``;
@@ -12,6 +15,11 @@ const PokemonType = ({
   damage_flag = 0,
   moves_flag = 0,
 }) => {
+  const isUnown = useSelector(unown);
+  const pokemonTypeAcc1 = (type) =>
+    isUnown ? type.toLowerCase() : type.toUpperCase();
+  const pokemonTypeAcc2 = (type) =>
+    isUnown ? type.name.toLowerCase() : type.name.toUpperCase();
   const typeBorder = (size) => {
     return {
       borderRadius: 5,
@@ -26,57 +34,19 @@ const PokemonType = ({
     damage_flag ? typeBorder(18) : moves_flag ? typeBorder(19) : typeBorder(20)
   )``;
 
-  const typeColor = (type) => {
-    switch (type) {
-      case "grass":
-        return "#438C30";
-      case "fire":
-        return "#D93023";
-      case "water":
-        return "#2C6EB0";
-      case "normal":
-        return "#BCB5B3";
-      case "electric":
-        return "#EB9538";
-      case "fire":
-        return "#EB4770";
-      case "fighting":
-        return "#6D2A0F";
-      case "rock":
-        return "#A28841";
-      case "ground":
-        return "#D2B160";
-      case "flying":
-        return "#5F7DD7";
-      case "bug":
-        return "#88952F";
-      case "poison":
-        return "#833581";
-      case "psychic":
-        return "#E66488";
-      case "dark":
-        return "#472E1D";
-      case "ghost":
-        return "#5860AA";
-      case "ice":
-        return "#5FD1F4";
-      case "steel":
-        return "#8E8E9C";
-      case "dragon":
-        return "#7D6AD5";
-      case "fairy":
-        return "#ECA4EC";
-    }
-  };
-
   const determineTypeText = () => {
     if (details_flag)
-      return regularText(10, 4.5, { color: "white", paddingHorizontal: 5 });
+      return regularText(
+        10,
+        4.5,
+        { color: "white", paddingHorizontal: 5 },
+        isUnown
+      );
     if (damage_flag)
-      return regularText(7, 4, { color: "white", paddingBottom: 1 });
+      return regularText(7, 4, { color: "white", paddingBottom: 1 }, isUnown);
     if (moves_flag)
-      return regularText(7, 4, { color: "white", paddingBottom: 1 });
-    return regularText(8.5, 4, { color: "white" });
+      return regularText(7, 4, { color: "white", paddingBottom: 1 }, isUnown);
+    return regularText(8.5, 4, { color: "white" }, isUnown);
   };
 
   const determineTypeColor = (type) => {
@@ -94,8 +64,8 @@ const PokemonType = ({
       <PokemonTypeBackground key={key} style={determineTypeColor(pokemonType)}>
         <PokemonTypeText style={determineTypeText()}>
           {damage_flag
-            ? pokemonType.toUpperCase()
-            : pokemonType.name.toUpperCase()}
+            ? pokemonTypeAcc1(pokemonType)
+            : pokemonTypeAcc2(pokemonType)}
         </PokemonTypeText>
       </PokemonTypeBackground>
     );

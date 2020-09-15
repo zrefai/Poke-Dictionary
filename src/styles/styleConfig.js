@@ -18,9 +18,9 @@ export const normalizeFont = (size) => {
   return Math.round(PixelRatio.roundToNearestPixel(size * scale));
 };
 
-export const regularText = (size, pt = 3, others = {}) => {
+export const regularText = (size, pt = 3, others = {}, isUnown = false) => {
   return {
-    fontFamily: "Pokemon_GB",
+    fontFamily: isUnown ? "Unown" : "Pokemon_GB",
     fontSize: normalizeFont(size),
     paddingTop: pt,
     textAlign: "center",
@@ -28,21 +28,18 @@ export const regularText = (size, pt = 3, others = {}) => {
   };
 };
 
-export const stackScreenNormalOptions = (route) => {
+export const stackScreenNormalOptions = (route, isUnown = false) => {
   return {
     title: route.params.name,
     headerStyle: commonStyles.headerStyle,
-    headerTitleStyle: commonStyles.headerTitleText,
-    headerBackTitleStyle: commonStyles.headerTitleText,
-    headerBackTitle: "Back",
+    headerTitleStyle: regularText(9, 5, {}, isUnown),
+    headerBackTitleStyle: regularText(9, 5, {}, isUnown),
+    headerBackTitle: isUnown ? "back" : "Back",
   };
 };
 
-const headerTitleText = {
-  fontFamily: "Pokemon_GB",
-  paddingTop: 5,
-  fontSize: normalizeFont(9),
-};
+export const lowerCaseFormat = (val, isUnown) =>
+  isUnown ? val.toLowerCase() : val;
 
 const headerStyle = {
   shadowColor: "#000",
@@ -70,7 +67,6 @@ const detailsHeaderTitleText = {
 
 export const commonStyles = StyleSheet.create({
   PokemonGB,
-  headerTitleText,
   headerStyle,
   detailsHeaderTitleText,
 });

@@ -16,13 +16,7 @@ const pokemonCardTextContainer = {
   paddingTop: 3,
 };
 
-const pokemonCardText = {
-  fontFamily: "Pokemon_GB",
-  paddingTop: 1,
-};
-
 export const styles = StyleSheet.create({
   pokemonCardContainer,
-  pokemonCardText,
   pokemonCardTextContainer,
 });

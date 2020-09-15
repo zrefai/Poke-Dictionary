@@ -5,28 +5,31 @@ import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { styles } from "./pokemonCardStyle";
 import { commonStyles } from "../../styles/styleConfig";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { unown } from "../../selectors";
 import capitalize from "../../utils/capitalize";
 import PokemonType from "../pokemon-type/PokemonType";
 import PokemonCardImage from "./pokemon-card-image/PokemonCardImage";
 import useSearch from "../../hooks/useSearch";
+import StyledText from "../../styles/TextStyle";
 
 const PokemonCardContainer = styled(View, styles.pokemonCardContainer)``;
 const PokemonCardNothingText = styled(Text, commonStyles.PokemonGB)`jcc asc`;
 const PokemonCardButton = styled(TouchableOpacity)`flx-i flx-row`;
-const PokemonCardText = styled(Text, styles.pokemonCardText)``;
-const PokemonCardTextContainer = styled(
-  View,
-  styles.pokemonCardTextContainer
-)`jcc`;
 const PokemonCardImageContainer = styled(View, { flex: 2 })``;
 const PokemonCardTypeContainer = styled(View, {
   alignContent: "center",
   marginRight: 3,
 })`jcc `;
+const PokemonCardTextContainer = styled(
+  View,
+  styles.pokemonCardTextContainer
+)`jcc`;
 
 const PokemonCard = ({ name, url }) => {
+  const isUnown = useSelector(unown);
   const navigation = useNavigation();
-  const [fetchPokemonResults, results, error] = useSearch(
+  const [results, error] = useSearch(
     url,
     `@POKEMON_${name.toUpperCase()}`,
     name
@@ -37,7 +40,8 @@ const PokemonCard = ({ name, url }) => {
       <PokemonCardButton
         onPress={() =>
           navigation.navigate("Details", {
-            name: capitalize(name),
+            //TODO: Do something about this
+            name: capitalize(name, isUnown),
             details: results,
           })
         }
@@ -46,7 +50,9 @@ const PokemonCard = ({ name, url }) => {
           <PokemonCardImage uri={results.sprites} />
         </PokemonCardImageContainer>
         <PokemonCardTextContainer>
-          <PokemonCardText>{capitalize(name)}</PokemonCardText>
+          <StyledText size={11} padtop={3} options={{ textAlign: "left" }}>
+            {capitalize(name)}
+          </StyledText>
         </PokemonCardTextContainer>
         <PokemonCardTypeContainer>
           <PokemonType types={results.types} />

@@ -2,10 +2,10 @@ import React from "react";
 import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { commonStyles, regularText } from "../../styles/styleConfig";
+import StyledText from "../../styles/TextStyle";
 import uuid from "../../utils/uuid";
 
 const DetailsInfoContainer = styled(View)`mt5 mh6`;
-const DetailsHeaderText = styled(Text, commonStyles.detailsHeaderTitleText)``;
 const DetailsInfoCellsContainer = styled(View)`flx-row ma1`;
 const DetailInfoCell = styled(View, { borderRadius: 5, borderWidth: 2 })`mh1`;
 const DetailInfoCellText = styled(
@@ -19,7 +19,9 @@ const DetailsInfoColumnContainer = styled(View, {
 const DetailsInfo = ({ header, params }) => {
   return (
     <DetailsInfoContainer>
-      <DetailsHeaderText>{header}</DetailsHeaderText>
+      <StyledText size={15} padtop={5} options={{ textAlign: "left" }}>
+        {header}
+      </StyledText>
       <DetailsInfoColumnContainer>
         {params.map((item) => {
           const keys = Object.keys(item);

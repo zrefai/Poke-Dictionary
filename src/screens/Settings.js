@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -8,6 +8,8 @@ import {
   Button,
   Alert,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { fontChange } from "../actions/font";
 import { styled } from "@shipt/react-native-tachyons";
 import { normalizeFont } from "../styles/styleConfig";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -31,13 +33,11 @@ const SettingsCellUnownModeContainer = styled(View, {
 })``;
 
 const SettingsScreen = () => {
-  const [unownMode, setUnownMode] = useState(
-    Settings.get("@SETTINGS_UNOWN_MODE")
-  );
+  const dispatch = useDispatch();
+  const isUnown = useSelector((state) => state.font.isUnown);
 
   const onUnownModeChange = () => {
-    Settings.set({ "@SETTINGS_UNOWN_MODE": !unownMode });
-    setUnownMode(!unownMode);
+    return dispatch(fontChange());
   };
 
   const asyncAlert = () =>
@@ -86,14 +86,14 @@ const SettingsScreen = () => {
         <SettingsCellUnownModeContainer>
           <SettingsCellHeaderText>Unown Mode:</SettingsCellHeaderText>
           <SettingsCellDescriptionText>
-            Turn all applicable text into Unown Text
+            Everything is Unown!?
           </SettingsCellDescriptionText>
         </SettingsCellUnownModeContainer>
         <Switch
           style={{ alignSelf: "center", marginHorizontal: 10 }}
           trackColor={{ false: "red", true: "#18e73a" }}
           onValueChange={() => onUnownModeChange()}
-          value={unownMode ? true : false}
+          value={isUnown}
         />
       </SettingsCellRowContainer>
     );

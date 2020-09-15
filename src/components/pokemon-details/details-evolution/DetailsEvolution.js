@@ -7,10 +7,7 @@ import useSearch from "../../../hooks/useSearch";
 const pokemonSpeciesURL = "https://pokeapi.co/api/v2/pokemon-species/";
 
 const DetailsEvolution = ({ id }) => {
-  const [fetchPokemonResults, results, error] = useSearch(
-    `${pokemonSpeciesURL}${id}`,
-    ""
-  );
+  const [results, error] = useSearch(`${pokemonSpeciesURL}${id}`, "");
 
   const renderEvolutionChain = () => {
     if (results.length != 0) {

@@ -1,30 +1,18 @@
 import React from "react";
-import {
-  FlatList,
-  ScrollView,
-  View,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { FlatList, ScrollView, View, TouchableOpacity } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import { styles } from "./pokemonListStyles";
-import { regularText } from "../../styles/styleConfig";
 import uuid from "../../utils/uuid";
 import PokemonCard from "../pokemon-card/PokemonCard";
+import StyledText from "../../styles/TextStyle";
 
+const returnText =
+  "Hit enter on current search to load pokemon that haven't shown up in the list yet";
 const NothingView = styled(View)`mv5`;
 const LoadMoreButton = styled(TouchableOpacity, styles.loadMoreButton)`aic`;
-const LoadMoreButtonText = styled(
-  Text,
-  regularText(12, 7, { color: "white", paddingBottom: 3, paddingHorizontal: 6 })
-)``;
 const ReturnTextContainer = styled(View, {
   alignContent: "center",
 })`asc mt7 ma6`;
-const ReturnText = styled(
-  Text,
-  regularText(10, 5, { color: "#898989" })
-)`lh-solid`;
 
 const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
   const renderLoadMore = () => {
@@ -34,7 +22,17 @@ const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
 
     return (
       <LoadMoreButton onPress={() => onLoadMore()}>
-        <LoadMoreButtonText>LOAD MORE</LoadMoreButtonText>
+        <StyledText
+          size={12}
+          padtop={7}
+          options={{
+            color: "white",
+            paddingBottom: 3,
+            paddingHorizontal: 6,
+          }}
+        >
+          LOAD MORE
+        </StyledText>
       </LoadMoreButton>
     );
   };
@@ -49,10 +47,13 @@ const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
         })
       ) : (
         <ReturnTextContainer>
-          <ReturnText>
-            Hit enter on current search to load pokemon that haven't shown up in
-            the list yet
-          </ReturnText>
+          <StyledText
+            size={10}
+            padtop={5}
+            options={{ color: "#898989", lineHeight: 16 }}
+          >
+            {returnText}
+          </StyledText>
         </ReturnTextContainer>
       )}
       {renderLoadMore()}

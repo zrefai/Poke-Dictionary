@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import { regularText } from "../../styles/styleConfig";
+import { useSelector } from "react-redux";
+import { unown } from "../../selectors/index.js";
 import SearchBar from "../search-bar/SearchBar";
 import PokemonList from "../pokemon-list/PokemonList";
 
@@ -9,10 +11,6 @@ const SearchContainer = styled(View)`flx-i bg-white`;
 const NothingHereContainer = styled(View, {
   alignContent: "center",
 })`asc mt7 ma6`;
-const NothingHereText = styled(
-  Text,
-  regularText(10, 2, { color: "#898989" })
-)`pt1 lh-solid `;
 
 const PokemonSearch = ({ pokemonList, pokemonMap }) => {
   const [term, setTerm] = useState("");
@@ -21,6 +19,13 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
   const [searchError, setSearchError] = useState(false);
   const [searching, setSearching] = useState(false);
   const [newlyAddedPokemon, setNewlyAddedPokemon] = useState(new Map());
+  const isUnown = useSelector(unown);
+
+  const NothingHereText = styled(
+    Text,
+    regularText(10, 2, { color: "#898989" }, isUnown)
+  )`pt1 lh-solid `;
+
   const [searchFilterResults, setSearchFilterResults] = useState(
     pokemonList.slice(0, index)
   );

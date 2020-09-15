@@ -7,10 +7,7 @@ import Loading from "../components/loading/Loading";
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon/?limit=1500";
 
 const Search = () => {
-  const [fetchPokemonResults, results, error] = useSearch(
-    pokemonURL,
-    "@MASTER_LIST"
-  );
+  const [results, error] = useSearch(pokemonURL, "@MASTER_LIST");
 
   const renderPokemonList = () => {
     if (results.length == 0 || error) return <Loading />;

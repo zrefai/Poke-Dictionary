@@ -1,14 +1,21 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { commonStyles, stackScreenNormalOptions } from "../styles/styleConfig";
+import {
+  commonStyles,
+  stackScreenNormalOptions,
+  regularText,
+} from "../styles/styleConfig";
 import Search from "../screens/Search";
 import Details from "../screens/Details";
 import Moves from "../screens/Moves";
 import Settings from "../screens/Settings";
 import SettingsButton from "../components/settings/SettingsButton";
+import { useSelector } from "react-redux";
+import { unown } from "../selectors";
 
 const SearchStack = () => {
+  const isUnown = useSelector(unown);
   const Stack = createStackNavigator();
 
   return (
@@ -18,21 +25,21 @@ const SearchStack = () => {
           name="Search"
           component={Search}
           options={{
-            title: "Pokemon Search",
+            title: isUnown ? "pokemon search" : "Pokemon Search",
             headerStyle: commonStyles.headerStyle,
-            headerTitleStyle: commonStyles.headerTitleText,
+            headerTitleStyle: regularText(9, 5, {}, isUnown),
             headerLeft: () => <SettingsButton />,
           }}
         />
         <Stack.Screen
           name="Details"
           component={Details}
-          options={({ route }) => stackScreenNormalOptions(route)}
+          options={({ route }) => stackScreenNormalOptions(route, isUnown)}
         />
         <Stack.Screen
           name="Moves"
           component={Moves}
-          options={({ route }) => stackScreenNormalOptions(route)}
+          options={({ route }) => stackScreenNormalOptions(route, isUnown)}
         />
         <Stack.Screen
           name="Settings"

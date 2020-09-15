@@ -44,5 +44,5 @@ export default (URL, key, name = "") => {
     };
   }, []);
 
-  return [fetchPokemonResults, results, error];
+  return [results, error];
 };

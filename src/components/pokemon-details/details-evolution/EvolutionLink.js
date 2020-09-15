@@ -5,16 +5,16 @@ import { regularText } from "../../../styles/styleConfig";
 import stringFormatter from "../../../utils/stringFormatter";
 import capitalize from "../../../utils/capitalize";
 import useSearch from "../../../hooks/useSearch";
+import StyledText from "../../../styles/TextStyle";
 
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon/";
 const EvolutionInfoImageContainer = styled(View)`aic jcc flx-row`;
 const EvolutionLinkContainer = styled(View)`aic wp45 jcc`;
 const EvolutionLinkImage = styled(Image)`wp70 ar-1`;
-const EvolutionLinkText = styled(Text, regularText(9))``;
 const EvolutionLinkInfoText = styled(Text, regularText(9))`lh-solid`;
 
 const EvolutionLink = ({ link }) => {
-  const [fetchPokemonResults, results, error] = useSearch(
+  const [results, error] = useSearch(
     `${pokemonURL}${link.ID}`,
     `@POKEMON_${link.name.toUpperCase()}`
   );
@@ -56,7 +56,9 @@ const EvolutionLink = ({ link }) => {
     return (
       <EvolutionLinkContainer>
         <EvolutionLinkImage source={{ uri: uri }} />
-        <EvolutionLinkText>{name}</EvolutionLinkText>
+        <StyledText size={9} padtop={3}>
+          {name}
+        </StyledText>
       </EvolutionLinkContainer>
     );
   };

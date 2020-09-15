@@ -1,13 +1,12 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
-import { commonStyles } from "../../../styles/styleConfig";
 import uuid from "../../../utils/uuid";
+import StyledText from "../../../styles/TextStyle";
 import useEvolutionSearch from "../../../hooks/useEvolutionSearch";
 import EvolutionLink from "./EvolutionLink";
 
 const EvolutionInfoContainer = styled(View)`mt5 mh6 mb4`;
-const EvolutionHeaderText = styled(Text, commonStyles.detailsHeaderTitleText)``;
 
 const EvolutionChain = ({ url, evolution_ID }) => {
   const [fetchEvolutionResults, results, error] = useEvolutionSearch(
@@ -18,7 +17,9 @@ const EvolutionChain = ({ url, evolution_ID }) => {
 
   return (
     <EvolutionInfoContainer>
-      <EvolutionHeaderText>Evolutions: </EvolutionHeaderText>
+      <StyledText size={15} padtop={5} options={{ textAlign: "left" }}>
+        Evolutions:
+      </StyledText>
       {results.length != 0
         ? results.map((item) => {
             return <EvolutionLink key={uuid()} link={item} />;

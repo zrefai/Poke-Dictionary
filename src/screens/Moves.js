@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, SafeAreaView } from "react-native";
+import { ScrollView, SafeAreaView } from "react-native";
 import MoveCard from "../components/pokemon-move/MoveCard";
 import uuid from "../utils/uuid";
 
