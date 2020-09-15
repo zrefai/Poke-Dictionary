@@ -93,7 +93,7 @@ const SettingsScreen = () => {
           style={{ alignSelf: "center", marginHorizontal: 10 }}
           trackColor={{ false: "red", true: "#18e73a" }}
           onValueChange={() => onUnownModeChange()}
-          value={unownMode}
+          value={unownMode ? true : false}
         />
       </SettingsCellRowContainer>
     );
