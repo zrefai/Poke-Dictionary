@@ -1,18 +1,22 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+  CardStyleInterpolators,
+} from "@react-navigation/stack";
 import {
   commonStyles,
   stackScreenNormalOptions,
   regularText,
 } from "../styles/styleConfig";
+import { useSelector } from "react-redux";
+import { unown } from "../selectors";
 import Search from "../screens/Search";
 import Details from "../screens/Details";
 import Moves from "../screens/Moves";
 import Settings from "../screens/Settings";
 import SettingsButton from "../components/settings/SettingsButton";
-import { useSelector } from "react-redux";
-import { unown } from "../selectors";
 
 const SearchStack = () => {
   const isUnown = useSelector(unown);

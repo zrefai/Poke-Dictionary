@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, ScrollView, View, TouchableOpacity } from "react-native";
+import { ScrollView, View, TouchableOpacity } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import { styles } from "./pokemonListStyles";
 import uuid from "../../utils/uuid";
@@ -37,36 +37,37 @@ const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
     );
   };
 
+  const renderReturnText = () => {
+    return (
+      <ReturnTextContainer>
+        <StyledText
+          size={10}
+          padtop={5}
+          options={{ color: "#898989", lineHeight: 16 }}
+        >
+          {returnText}
+        </StyledText>
+      </ReturnTextContainer>
+    );
+  };
+
   return (
-    <ScrollView style={{ flex: 1, width: "100%" }}>
-      {pokemonList.length > 0 ? (
-        pokemonList.map((pokemon) => {
-          return (
-            <PokemonCard key={uuid()} name={pokemon.name} url={pokemon.url} />
-          );
-        })
-      ) : (
-        <ReturnTextContainer>
-          <StyledText
-            size={10}
-            padtop={5}
-            options={{ color: "#898989", lineHeight: 16 }}
-          >
-            {returnText}
-          </StyledText>
-        </ReturnTextContainer>
-      )}
+    <ScrollView
+      keyboardDismissMode="on-drag"
+      maintainVisibleContentPosition={{
+        minIndexForVisible: 0,
+      }}
+      style={{ flex: 1, width: "100%" }}
+    >
+      {pokemonList.length > 0
+        ? pokemonList.map((pokemon) => {
+            return (
+              <PokemonCard key={uuid()} name={pokemon.name} url={pokemon.url} />
+            );
+          })
+        : renderReturnText()}
       {renderLoadMore()}
     </ScrollView>
-    //TODO: Revisit flatlist because currently its causing issues
-    // <FlatList
-    //   data={pokemonList}
-    //   renderItem={({ item }) => {
-    //     return <PokemonCard key={uuid()} name={item.name} url={item.url} />;
-    //   }}
-    //   keyExtractor={(item) => item.url}
-    //   ListFooterComponent={renderLoadMore()}
-    // />
   );
 };
 
