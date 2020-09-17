@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import { commonStyles, regularText } from "../../styles/styleConfig";
 import { styled } from "@shipt/react-native-tachyons";
 import { useSelector } from "react-redux";
-import { unown } from "../../selectors";
+import { unown } from "../../redux/selectors";
 
 const LoadingContainer = styled(View)`asc jcc flx-i`;
 const LoadingIndicator = styled(ActivityIndicator)`jcc aic`;

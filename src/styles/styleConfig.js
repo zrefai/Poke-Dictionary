@@ -1,9 +1,5 @@
 import { Dimensions, PixelRatio, StyleSheet } from "react-native";
-import {
-  createStackNavigator,
-  TransitionPresets,
-  CardStyleInterpolators,
-} from "@react-navigation/stack";
+import stringFormatter from "../utils/stringFormatter";
 
 export const deviceWidth = Dimensions.get("window").width;
 export const deviceHeight = Dimensions.get("window").height;
@@ -35,12 +31,12 @@ export const regularText = (size, pt = 3, others = {}, isUnown = false) => {
 
 export const stackScreenNormalOptions = (route, isUnown = false) => {
   return {
-    title: route.params.name,
+    title: stringFormatter(route.params.name, "-", isUnown),
     headerStyle: commonStyles.headerStyle,
     headerTitleStyle: regularText(9, 5, {}, isUnown),
     headerBackTitleStyle: regularText(9, 5, {}, isUnown),
     headerBackTitle: isUnown ? "back" : "Back",
-    cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+    // cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
   };
 };
 

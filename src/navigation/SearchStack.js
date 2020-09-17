@@ -11,7 +11,7 @@ import {
   regularText,
 } from "../styles/styleConfig";
 import { useSelector } from "react-redux";
-import { unown } from "../selectors";
+import { unown } from "../redux/selectors";
 import Search from "../screens/Search";
 import Details from "../screens/Details";
 import Moves from "../screens/Moves";

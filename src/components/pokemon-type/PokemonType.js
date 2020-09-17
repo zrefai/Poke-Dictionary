@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import { normalizeUIW, regularText } from "../../styles/styleConfig";
 import { useSelector } from "react-redux";
-import { unown } from "../../selectors/index";
+import { unown } from "../../redux/selectors/index";
 import typeColor from "./typeColor";
 
 const PokemonTypeContainer = styled(View)`flx-wrap jcc aic`;
@@ -31,7 +31,7 @@ const PokemonType = ({
 
   const PokemonTypeBackground = styled(
     View,
-    damage_flag ? typeBorder(18) : moves_flag ? typeBorder(19) : typeBorder(20)
+    damage_flag ? typeBorder(18) : moves_flag ? typeBorder(19) : typeBorder(22)
   )``;
 
   const determineTypeText = () => {

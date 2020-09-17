@@ -3,7 +3,8 @@ import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons";
 import { regularText } from "../../styles/styleConfig";
 import { useSelector } from "react-redux";
-import { unown } from "../../selectors/index.js";
+import { unown } from "../../redux/selectors/index.js";
+import Fuse from "fuse.js";
 import SearchBar from "../search-bar/SearchBar";
 import PokemonList from "../pokemon-list/PokemonList";
 
@@ -18,8 +19,9 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
   const [pokeList, setPokeList] = useState(pokemonList.slice(0, index));
   const [searchError, setSearchError] = useState(false);
   const [searching, setSearching] = useState(false);
-  const [newlyAddedPokemon, setNewlyAddedPokemon] = useState(new Map());
   const isUnown = useSelector(unown);
+
+  // console.log(pokemonList);
 
   const NothingHereText = styled(
     Text,
@@ -30,43 +32,63 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
     pokemonList.slice(0, index)
   );
 
-  const checkSearchFilterResults = (
-    searchTerm,
-    length = searchFilterResults.length
-  ) => {
-    for (let i = 0; i < length; ++i) {
-      if (searchFilterResults[i].name === searchTerm) {
-        return true;
-      }
-    }
-    return false;
-  };
+  // const checkSearchFilterResults = (
+  //   searchTerm,
+  //   length = searchFilterResults.length
+  // ) => {
+  //   for (let i = 0; i < length; ++i) {
+  //     if (searchFilterResults[i].name === searchTerm) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // };
 
-  const newSearch = (searchTerm) => {
-    if (searchTerm.length === 0) return;
-    if (pokeList.length > 0) return;
+  // const newSearch = (searchTerm) => {
+  //   if (searchTerm.length === 0) return;
+  //   // if (pokeList.length > 0) return;
 
-    searchTerm = searchTerm.replace(/^\s+|\s+$/gm, "").toLowerCase();
-    if (pokemonMap.has(searchTerm)) {
-      if (checkSearchFilterResults(searchTerm)) return;
-      let newFilterResults = searchFilterResults;
-      let newFilterEntry = {
-        name: searchTerm,
-        url: pokemonMap.get(searchTerm),
-      };
+  //   searchTerm = searchTerm.replace(/^\s+|\s+$/gm, "").toLowerCase();
 
-      //Add for load more button check
-      let newlyAddedMap = newlyAddedPokemon;
-      newlyAddedMap.set(searchTerm);
-      setNewlyAddedPokemon(newlyAddedMap);
+  //   const options = {
+  //     shouldSort: true,
+  //     threshold: 0.25,
+  //     keys: ["name"],
+  //   };
 
-      newFilterResults.unshift(newFilterEntry);
-      setSearchFilterResults(newFilterResults);
-      searchFilter(term);
-    } else {
-      setSearchError(true);
-    }
-  };
+  //   const fuse = new Fuse(pokemonList, options);
+  //   const fuseFilterResults = fuse.search(searchTerm);
+
+  //   if (fuseFilterResults.length > 0) {
+  //     const newFilterResults = fuseFilterResults.reduce((acc, curr) => {
+  //       const entry = { name: curr.item.name, url: curr.item.url };
+  //       return acc.concat(entry);
+  //     }, []);
+  //     setPokeList(newFilterResults);
+  //     // console.log(newFilterResults);
+  //   } else {
+  //     setSearchError(true);
+  //   }
+  //   // if (pokemonMap.has(searchTerm)) {
+  //   //   if (checkSearchFilterResults(searchTerm)) return;
+  //   //   let newFilterResults = searchFilterResults;
+  //   //   let newFilterEntry = {
+  //   //     name: searchTerm,
+  //   //     url: pokemonMap.get(searchTerm),
+  //   //   };
+
+  //   //   //Add for load more button check
+  //   //   let newlyAddedMap = newlyAddedPokemon;
+  //   //   newlyAddedMap.set(searchTerm);
+  //   //   setNewlyAddedPokemon(newlyAddedMap);
+
+  //   //   newFilterResults.unshift(newFilterEntry);
+  //   //   setSearchFilterResults(newFilterResults);
+  //   //   searchFilter(term);
+  //   // } else {
+  //   //   setSearchError(true);
+  //   // }
+  // };
 
   const searchFilter = (newTerm) => {
     if (newTerm.length === 0) setSearching(false);
@@ -76,15 +98,39 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
     searchError ? setSearchError(false) : null;
     setTerm(newTerm);
 
-    const newSearchResults = searchFilterResults.filter((item) => {
-      const name = `${item.name.toLowerCase()}`;
-      const searchTerm = newTerm.toLowerCase();
+    if (newTerm.length <= 1) {
+      const newSearchResults = searchFilterResults.filter((item) => {
+        const name = `${item.name.toLowerCase()}`;
+        const searchTerm = newTerm.toLowerCase();
 
-      return name.indexOf(searchTerm) > -1;
-    });
+        return name.indexOf(searchTerm) > -1;
+      });
 
-    //If new search results yields from currently loaded list
-    if (newSearchResults) setPokeList(newSearchResults);
+      //If new search results yields from currently loaded list
+      if (newSearchResults) setPokeList(newSearchResults);
+    } else {
+      newTerm = newTerm.replace(/^\s+|\s+$/gm, "").toLowerCase();
+
+      const options = {
+        shouldSort: true,
+        threshold: 0.25,
+        keys: ["name"],
+      };
+
+      const fuse = new Fuse(pokemonList, options);
+      const fuseFilterResults = fuse.search(newTerm);
+
+      if (fuseFilterResults.length > 0) {
+        const newFilterResults = fuseFilterResults.reduce((acc, curr) => {
+          const entry = { name: curr.item.name, url: curr.item.url };
+          return acc.concat(entry);
+        }, []);
+        setPokeList(newFilterResults);
+        // console.log(newFilterResults);
+      } else {
+        setSearchError(true);
+      }
+    }
   };
 
   const loadMorePokemon = () => {
@@ -94,7 +140,6 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
     if (newIndex >= pokemonList.length) return;
 
     for (let i = index + 1; i < newIndex; ++i) {
-      if (newlyAddedPokemon.has(pokemonList[i].name)) continue;
       newResultsList.push(pokemonList[i]);
     }
 
@@ -108,7 +153,7 @@ const PokemonSearch = ({ pokemonList, pokemonMap }) => {
       <SearchBar
         term={term}
         onTermChange={(newTerm) => searchFilter(newTerm)}
-        onTermSubmit={() => newSearch(term)}
+        // onTermSubmit={() => newSearch(term)}
       />
       {searchError ? (
         <NothingHereContainer>

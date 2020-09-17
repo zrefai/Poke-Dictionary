@@ -13,12 +13,12 @@ const Search = () => {
     if (results.length == 0 || error) return <Loading />;
 
     const data = results.results;
-    let pokemonMap = new Map();
-    for (let i = 0; i < data.length; ++i) {
-      pokemonMap.set(data[i].name, data[i].url);
-    }
+    // let pokemonMap = new Map();
+    // for (let i = 0; i < data.length; ++i) {
+    //   pokemonMap.set(data[i].name, data[i].url);
+    // }
 
-    return <PokemonSearch pokemonList={data} pokemonMap={pokemonMap} />;
+    return <PokemonSearch pokemonList={data} />;
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>

@@ -5,7 +5,7 @@ import { styles } from "./searchBarStyles";
 import { Feather } from "@expo/vector-icons";
 import { regularText } from "../../styles/styleConfig";
 import { useSelector } from "react-redux";
-import { unown } from "../../selectors";
+import { unown } from "../../redux/selectors";
 
 const SearchBarContainer = styled(View, styles.backgroundStyle)``;
 

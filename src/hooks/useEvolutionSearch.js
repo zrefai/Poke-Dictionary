@@ -105,7 +105,7 @@ export default (URL, key, name = "") => {
         if (key) AsyncStorage.setItem(key, JSON.stringify(evolutionChain));
       })
       .catch((error) => {
-        errorLog(error, setError, name);
+        errorLog(error, setError, name, "useEvolutionSearch", URL);
       });
   };
 
@@ -117,5 +117,5 @@ export default (URL, key, name = "") => {
     };
   }, []);
 
-  return [fetchEvolutionResults, results, error];
+  return [results, error];
 };

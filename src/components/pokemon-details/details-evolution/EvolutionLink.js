@@ -6,6 +6,7 @@ import stringFormatter from "../../../utils/stringFormatter";
 import capitalize from "../../../utils/capitalize";
 import useSearch from "../../../hooks/useSearch";
 import StyledText from "../../../styles/TextStyle";
+import DetailsError from "../DetailsError";
 
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon/";
 const EvolutionInfoImageContainer = styled(View)`aic jcc flx-row`;
@@ -64,21 +65,30 @@ const EvolutionLink = ({ link }) => {
   };
 
   const renderLink = () => {
+    //TODO: Text does not appear when error
+    if (error)
+      return (
+        <DetailsError>
+          Evolution data does not exist, or there was an error fetching it.
+        </DetailsError>
+      );
     if (results.sprites !== undefined) {
       return (
-        <EvolutionInfoImageContainer>
+        <>
           {renderLinkInfo()}
           {renderLinkImage(
             results.sprites.front_default,
             capitalize(link.name)
           )}
-        </EvolutionInfoImageContainer>
+        </>
       );
     }
     return null;
   };
 
-  return renderLink();
+  return (
+    <EvolutionInfoImageContainer>{renderLink()}</EvolutionInfoImageContainer>
+  );
 };
 
 export default EvolutionLink;

@@ -11,7 +11,7 @@ import DetailsDamageList from "../components/pokemon-details/DetailsDamageList";
 
 const DetailTypesContainer = styled(View)`flx-i flx-row jcc mv2`;
 
-const Details = ({ navigation, route }) => {
+const Details = ({ route }) => {
   const { details } = route.params;
 
   const info_params = [
@@ -41,7 +41,7 @@ const Details = ({ navigation, route }) => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ flex: 1, backgroundColor: "white" }}>
         <ScrollView>
-          <DetailsImages images={details.sprites} />
+          <DetailsImages sprites={details.sprites} />
           <DetailTypesContainer>
             <PokemonType types={details.types} details_flag={1} />
           </DetailTypesContainer>
@@ -51,7 +51,7 @@ const Details = ({ navigation, route }) => {
             name={capitalize(details.name)}
             movesList={details.moves}
           />
-          <DetailsEvolution id={details.id} />
+          <DetailsEvolution speciesURL={details.species.url} id={details.id} />
           <DetailsDamageList typeList={details.types} />
         </ScrollView>
       </View>

@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import { AppLoading } from "expo";
 import { Provider } from "react-redux";
 import SearchStack from "./src/navigation/SearchStack";
-import configureStore from "./src/store/configureStore";
+import configureStore from "./src/redux/store/configureStore";
 
 export default function App() {
   const store = configureStore();

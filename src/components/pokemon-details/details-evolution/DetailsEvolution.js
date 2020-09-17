@@ -1,30 +1,45 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { styled } from "@shipt/react-native-tachyons/dist/styled";
+import StyledText from "../../../styles/TextStyle";
 import clipID from "../../../utils/clipID";
 import EvolutionChain from "./EvolutionChain";
 import useSearch from "../../../hooks/useSearch";
+import DetailsError from "../DetailsError";
 
-const pokemonSpeciesURL = "https://pokeapi.co/api/v2/pokemon-species/";
+const EvolutionInfoContainer = styled(View)`mt5 mh6 mb4`;
 
-const DetailsEvolution = ({ id }) => {
-  const [results, error] = useSearch(`${pokemonSpeciesURL}${id}`, "");
+const DetailsEvolution = ({ speciesURL }) => {
+  const [results, error] = useSearch(speciesURL, "");
 
   const renderEvolutionChain = () => {
+    if (error) return null;
     if (results.length != 0) {
-      //   console.log("Results in evolution:", results);
-      const evolutionURL = results.evolution_chain.url;
+      if (results.evolution_chain) {
+        const evolutionURL = results.evolution_chain.url;
+        return (
+          <EvolutionChain
+            url={evolutionURL}
+            evolution_ID={clipID(evolutionURL)}
+          />
+        );
+      }
       return (
-        <EvolutionChain
-          url={evolutionURL}
-          evolution_ID={clipID(evolutionURL)}
-        />
+        <DetailsError>
+          Evolution data does not exist for this pokemon.
+        </DetailsError>
       );
     }
-
-    //TODO: handle errors from no evolutions potentially
-    return <View></View>;
+    return null;
   };
-  return renderEvolutionChain();
+  return (
+    <EvolutionInfoContainer>
+      <StyledText size={15} padtop={5} options={{ textAlign: "left" }}>
+        Evolutions:
+      </StyledText>
+      {renderEvolutionChain()}
+    </EvolutionInfoContainer>
+  );
 };
 
 export default DetailsEvolution;

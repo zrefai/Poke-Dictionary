@@ -9,7 +9,7 @@ import {
   Alert,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { fontChange } from "../actions/font";
+import { fontChange } from "../redux/actions/font";
 import { styled } from "@shipt/react-native-tachyons";
 import { normalizeFont } from "../styles/styleConfig";
 import AsyncStorage from "@react-native-community/async-storage";

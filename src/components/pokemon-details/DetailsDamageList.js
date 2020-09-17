@@ -6,6 +6,7 @@ import uuid from "../../utils/uuid";
 import useTypeSearch from "../../hooks/useTypeSearch";
 import PokemonType from "../pokemon-type/PokemonType";
 import StyledText from "../../styles/TextStyle";
+import DetailsError from "./DetailsError";
 
 const DetailsDamageListCellContainer = styled(View)`flx-i aic jcc flx-row mv3`;
 const DetailsDamageCellContainer = styled(View)`aic wp45 jcc`;
@@ -25,11 +26,8 @@ const damageTextMap = {
 };
 
 const DetailsDamageList = ({ typeList }) => {
-  const [fetchTypeResults, results, error] = useTypeSearch(
-    typeList.map((item) => item.type.url)
-  );
+  const [results, error] = useTypeSearch(typeList.map((item) => item.type.url));
 
-  // console.log(results);
   const processDamageData = () => {
     return results.reduce((acc, o) => {
       Object.keys(o).forEach((key) => {
@@ -78,6 +76,12 @@ const DetailsDamageList = ({ typeList }) => {
   };
 
   const renderDamageList = () => {
+    if (error)
+      return (
+        <DetailsError>
+          There was an error fetching damage stats data.
+        </DetailsError>
+      );
     if (results.length > 0) {
       const damageMap = processDamageData();
       const damageKeys = Object.keys(damageTextMap);

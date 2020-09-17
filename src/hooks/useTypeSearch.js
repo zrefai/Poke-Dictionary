@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AsyncStorage from "@react-native-community/async-storage";
+import errorLog from "../utils/errorLog";
 
 export default (URLs) => {
   const [results, setResults] = useState([]);
@@ -9,6 +9,9 @@ export default (URLs) => {
   const source = cancelToken.source();
 
   const fetchTypeResults = async () => {
+    //Reset error on reload
+    setError("");
+
     const promises = URLs.map((type_url) => {
       return axios.get(type_url).then(({ data }) => {
         const damage_relations = { ...data.damage_relations, name: data.name };
@@ -21,7 +24,7 @@ export default (URLs) => {
         return values;
       })
       .catch((error) => {
-        console.log(error);
+        errorLog(error, setError, "<No Key>", "useTypeSearch", URLs);
         setError(error);
       });
 
@@ -36,5 +39,5 @@ export default (URLs) => {
     };
   }, []);
 
-  return [fetchTypeResults, results, error];
+  return [results, error];
 };

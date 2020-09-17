@@ -32,7 +32,7 @@ export default (URL, key, name = "") => {
         if (key) AsyncStorage.setItem(key, JSON.stringify(response.data));
       })
       .catch((error) => {
-        errorLog(error, setError, name);
+        errorLog(error, setError, name, "useSearch", URL);
       });
   };
 
