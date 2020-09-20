@@ -21,7 +21,6 @@ const DetailsImages = ({ sprites }) => {
             }}
           />
         );
-      console.log("got to placeholder");
       return <PlaceholderImage source={placeholder} />;
     }
 
@@ -36,7 +35,6 @@ const DetailsImages = ({ sprites }) => {
             }}
           />
         );
-      console.log("got to null");
       return null;
     }
   };

@@ -37,18 +37,13 @@ const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
     );
   };
 
-  const renderReturnText = () => {
-    return (
-      <ReturnTextContainer>
-        <StyledText
-          size={10}
-          padtop={5}
-          options={{ color: "#898989", lineHeight: 16 }}
-        >
-          {returnText}
-        </StyledText>
-      </ReturnTextContainer>
-    );
+  const renderPokemonList = () => {
+    if (pokemonList.length > 0) {
+      return pokemonList.map((pokemon) => (
+        <PokemonCard key={uuid()} name={pokemon.name} url={pokemon.url} />
+      ));
+    }
+    return null;
   };
 
   return (
@@ -59,13 +54,7 @@ const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
       }}
       style={{ flex: 1, width: "100%" }}
     >
-      {pokemonList.length > 0
-        ? pokemonList.map((pokemon) => {
-            return (
-              <PokemonCard key={uuid()} name={pokemon.name} url={pokemon.url} />
-            );
-          })
-        : renderReturnText()}
+      {renderPokemonList()}
       {renderLoadMore()}
     </ScrollView>
   );

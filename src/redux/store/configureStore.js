@@ -2,13 +2,17 @@ import { createStore, combineReducers } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-community/async-storage";
 import fontReducer from "../reducers/fontReducer";
+import favoritesReducer from "../reducers/favoritesReducer";
 
-const rootReducer = combineReducers({ font: fontReducer });
+const rootReducer = combineReducers({
+  font: fontReducer,
+  favorites: favoritesReducer,
+});
 
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whiteList: ["font"],
+  whiteList: ["font", "favorites"],
   blacklist: [],
 };
 

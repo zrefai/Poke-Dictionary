@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fontChange } from "../redux/actions/font";
 import { styled } from "@shipt/react-native-tachyons";
 import { normalizeFont } from "../styles/styleConfig";
+import { unown } from "../redux/selectors";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const SettingsCellDescriptionText = styled(Text)`tj pv1 ph2`;
@@ -34,7 +35,7 @@ const SettingsCellUnownModeContainer = styled(View, {
 
 const SettingsScreen = () => {
   const dispatch = useDispatch();
-  const isUnown = useSelector((state) => state.font.isUnown);
+  const isUnown = useSelector(unown);
 
   const onUnownModeChange = () => {
     return dispatch(fontChange());

@@ -20,7 +20,8 @@ const PokemonCardButton = styled(TouchableOpacity)`flx-i flx-row`;
 const PokemonCardTypeContainer = styled(View, {
   alignContent: "center",
   marginHorizontal: 4,
-})`jcc `;
+  flex: 1.7,
+})`jcc aic`;
 const PokemonCardTextContainer = styled(
   View,
   styles.pokemonCardTextContainer
@@ -62,15 +63,21 @@ const PokemonCard = ({ name, url }) => {
     );
   };
 
-  return (
-    <PokemonCardContainer>
-      {results ? (
-        renderPokemonCard()
-      ) : (
-        <PokemonCardNothingText>Nothing Yet</PokemonCardNothingText>
-      )}
-    </PokemonCardContainer>
-  );
+  const renderPokemonCardContainer = () => {
+    if (error) return null;
+    if (results)
+      return (
+        <PokemonCardContainer>
+          {results ? (
+            renderPokemonCard()
+          ) : (
+            <PokemonCardNothingText>Nothing Yet</PokemonCardNothingText>
+          )}
+        </PokemonCardContainer>
+      );
+  };
+
+  return renderPokemonCardContainer();
 };
 
 export default memo(PokemonCard);

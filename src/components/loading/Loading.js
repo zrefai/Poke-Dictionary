@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ActivityIndicator } from "react-native";
-import { commonStyles, regularText } from "../../styles/styleConfig";
+import { regularText } from "../../styles/styleConfig";
 import { styled } from "@shipt/react-native-tachyons";
 import { useSelector } from "react-redux";
 import { unown } from "../../redux/selectors";
