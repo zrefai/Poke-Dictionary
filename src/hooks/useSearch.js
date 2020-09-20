@@ -6,10 +6,8 @@ import AsyncStorage from "@react-native-community/async-storage";
 export default (URL, key, name = "") => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
-  const cancelToken = axios.CancelToken;
-  const source = cancelToken.source();
 
-  const fetchPokemonResults = async () => {
+  const fetchPokemonResults = async (source) => {
     //Reset error on reload of results
     setError("");
 
@@ -37,8 +35,8 @@ export default (URL, key, name = "") => {
   };
 
   useEffect(() => {
-    fetchPokemonResults();
-
+    const source = axios.CancelToken.source();
+    fetchPokemonResults(source);
     return () => {
       source.cancel();
     };

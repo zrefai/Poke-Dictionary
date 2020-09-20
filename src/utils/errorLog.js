@@ -16,6 +16,7 @@ export default function errorLog(error, setError, key, place, URL) {
     console.log("URL: ", URL);
     console.log("Location: ", place);
   } else {
+    if (error.message === undefined) return;
     console.log(
       "Something happened in setting up the request, or it was canceled."
     );
