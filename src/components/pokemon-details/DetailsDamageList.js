@@ -82,7 +82,7 @@ const DetailsDamageList = ({ typeList }) => {
           There was an error fetching damage stats data.
         </DetailsError>
       );
-    if (results.length > 0) {
+    if (results.length) {
       const damageMap = processDamageData();
       const damageKeys = Object.keys(damageTextMap);
 
@@ -91,7 +91,7 @@ const DetailsDamageList = ({ typeList }) => {
           <DetailsDamageListCellContainer key={uuid()}>
             {renderDamageInfo(damageKey)}
             <DetailsDamageCellSeparator />
-            {damageMap.get(damageKey).length > 0
+            {damageMap.get(damageKey).length
               ? renderDamageType(damageMap.get(damageKey))
               : renderNothing()}
           </DetailsDamageListCellContainer>

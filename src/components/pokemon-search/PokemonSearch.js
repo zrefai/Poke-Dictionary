@@ -60,7 +60,7 @@ const PokemonSearch = ({ pokemonList }) => {
       const fuse = new Fuse(pokemonList, options);
       const fuseFilterResults = fuse.search(newTerm);
 
-      if (fuseFilterResults.length > 0) {
+      if (fuseFilterResults.length) {
         const newFilterResults = fuseFilterResults.reduce((acc, curr) => {
           const entry = { name: curr.item.name, url: curr.item.url };
           return acc.concat(entry);

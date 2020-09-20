@@ -20,7 +20,7 @@ const EvolutionChain = ({ url, evolution_ID }) => {
         </DetailsError>
       );
     }
-    if (results.length != 0) {
+    if (results.length) {
       return results.map((item) => {
         return <EvolutionLink key={uuid()} link={item} />;
       });

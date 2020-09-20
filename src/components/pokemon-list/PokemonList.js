@@ -38,7 +38,7 @@ const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
   };
 
   const renderPokemonList = () => {
-    if (pokemonList.length > 0) {
+    if (pokemonList.length) {
       return pokemonList.map((pokemon) => (
         <PokemonCard key={uuid()} name={pokemon.name} url={pokemon.url} />
       ));

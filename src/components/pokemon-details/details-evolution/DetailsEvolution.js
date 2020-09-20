@@ -14,23 +14,20 @@ const DetailsEvolution = ({ speciesURL }) => {
 
   const renderEvolutionChain = () => {
     if (error) return null;
-    if (results.length != 0) {
-      if (results.evolution_chain) {
-        const evolutionURL = results.evolution_chain.url;
-        return (
-          <EvolutionChain
-            url={evolutionURL}
-            evolution_ID={clipID(evolutionURL)}
-          />
-        );
-      }
+    if (results.evolution_chain) {
+      const evolutionURL = results.evolution_chain.url;
       return (
-        <DetailsError>
-          Evolution data does not exist for this pokemon.
-        </DetailsError>
+        <EvolutionChain
+          url={evolutionURL}
+          evolution_ID={clipID(evolutionURL)}
+        />
       );
     }
-    return null;
+    return (
+      <DetailsError>
+        Evolution data does not exist for this pokemon.
+      </DetailsError>
+    );
   };
   return (
     <EvolutionInfoContainer>

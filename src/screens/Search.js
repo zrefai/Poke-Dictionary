@@ -10,7 +10,7 @@ const Search = () => {
   const [results, error] = useSearch(pokemonURL, "@MASTER_LIST");
 
   const renderPokemonList = () => {
-    if (results.length == 0 || error) return <Loading />;
+    if (results.length === 0 || error) return <Loading />;
 
     return <PokemonSearch pokemonList={results.results} />;
   };
