@@ -13,7 +13,6 @@ import {
 const FavoritesButtonContainer = styled(TouchableOpacity)`mt1 mr3`;
 
 export default function FavoritesButton({ name, id }) {
-  //TODO: check to make sure that entries like MEGA are pulling up the same thing, and that their ID's are mismatched
   const dispatch = useDispatch();
   const favoritesList = useSelector(favorites);
   const [buttonState, setButtonState] = useState(

@@ -20,8 +20,8 @@ const backgroundStyle = {
 
 const iconStyle = {
   fontSize: normalizeFont(23),
-  alignSelf: "center",
-  marginHorizontal: 10,
+  marginHorizontal: 7,
+  paddingTop: 3,
   marginVertical: 2,
 };
 

@@ -49,6 +49,8 @@ const EvolutionLink = ({ link }) => {
       return renderInfo(
         `Evolves learning ${stringFormatter(link.known_move, "-")}`
       );
+    if (link.affection)
+      return renderInfo(`Evolves when Affection: ${link.affection}`);
 
     return renderInfo(`LVL NULL`);
   };

@@ -11,14 +11,14 @@ import MoveCard from "../../pokemon-move/MoveCard";
 import StyledText from "../../../styles/TextStyle";
 import DetailsError from "../DetailsError";
 
-const DetailsMovesContainer = styled(View)`mt5 mh6`;
+const DetailsMovesContainer = styled(View)`mt5`;
 const DetailsMovesListButton = styled(
   TouchableOpacity,
   styles.detailsMovesMoreButton
 )``;
 const DetailsMovesListContainer = styled(View, {
   flexDirection: "column",
-})`mt4 aic`;
+})`mt4 mh5`;
 
 const DetailsMovesList = ({ name, movesList }) => {
   const isUnown = useSelector(unown);
@@ -71,7 +71,11 @@ const DetailsMovesList = ({ name, movesList }) => {
 
   return (
     <DetailsMovesContainer>
-      <StyledText size={15} padtop={5} options={{ textAlign: "left" }}>
+      <StyledText
+        size={15}
+        padtop={5}
+        options={{ textAlign: "left", marginHorizontal: 32 }}
+      >
         Moves List:
       </StyledText>
       {renderMovesList()}

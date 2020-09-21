@@ -19,9 +19,8 @@ const PokemonCardNothingText = styled(Text, commonStyles.PokemonGB)`jcc asc`;
 const PokemonCardButton = styled(TouchableOpacity)`flx-i flx-row`;
 const PokemonCardTypeContainer = styled(View, {
   alignContent: "center",
-  marginHorizontal: 4,
   flex: 1.7,
-})`jcc aic`;
+})`jcc aic mh2`;
 const PokemonCardTextContainer = styled(
   View,
   styles.pokemonCardTextContainer

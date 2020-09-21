@@ -10,14 +10,6 @@ const detailsMovesMoreButton = {
   backgroundColor: "#6BACEF",
 };
 
-const detailsMoveListCell = {
-  borderRadius: 5,
-  borderWidth: 2,
-  marginVertical: 2,
-  minWidth: normalizeUIW(87),
-};
-
 export const styles = StyleSheet.create({
-  detailsMoveListCell,
   detailsMovesMoreButton,
 });

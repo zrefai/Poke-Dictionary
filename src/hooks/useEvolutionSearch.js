@@ -19,6 +19,7 @@ export default (URL, key, name = "") => {
       item:
         evoDetLen == 0 ? null : evoDet.item === null ? null : evoDet.item.name,
       happiness: evoDetLen == 0 ? null : evoDet.min_happiness,
+      affection: evoDetLen == 0 ? null : evoDet.min_affection,
       held_item:
         evoDetLen == 0
           ? null

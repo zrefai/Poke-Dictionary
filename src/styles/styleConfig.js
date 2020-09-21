@@ -49,14 +49,11 @@ const PokemonGB = {
   fontSize: normalizeFont(10),
 };
 
-const detailsHeaderTitleText = {
-  fontFamily: "Pokemon_GB",
-  fontSize: normalizeFont(15),
-  paddingTop: 5,
+export const tachyonStyles = {
+  acc: { alignContent: "center" },
 };
 
 export const commonStyles = StyleSheet.create({
   PokemonGB,
   headerStyle,
-  detailsHeaderTitleText,
 });
