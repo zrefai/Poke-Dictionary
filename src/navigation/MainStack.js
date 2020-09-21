@@ -25,7 +25,7 @@ const MainStack = () => {
         name="Search"
         component={Search}
         options={{
-          title: isUnown ? "pokemon search" : "Pokemon Search",
+          title: isUnown ? "poke search" : "Poke Search",
           headerStyle: commonStyles.headerStyle,
           headerTitleStyle: regularText(9, 5, {}, isUnown),
           headerLeft: () => <SettingsButton />,

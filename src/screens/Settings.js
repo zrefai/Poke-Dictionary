@@ -58,16 +58,15 @@ const SettingsScreen = () => {
       <SettingsCellColumnContainer>
         <SettingsCellHeaderText>Clear Saved Data:</SettingsCellHeaderText>
         <SettingsCellDescriptionText>
-          Erase all saved data on pokemon, pokemon types, and pokemon moves.
-          This will also erase the data saved for your favorites list. Only do
-          this if you ever experience problems with the Pokemon Dictionary or
-          want to free up memory on your personal device. Internet connection is
-          required after clearing memory for further use of the Pokemon
-          Dictionary.
+          Erase all saved data on character, types, and moves. This will also
+          erase the data saved for your favorites list. Only do this if you ever
+          experience problems with the Pokè Dictionary or want to free up memory
+          on your personal device. Internet connection is required after
+          clearing memory for further use of the Pokè Dictionary.
         </SettingsCellDescriptionText>
         <SettingsCellButton
           onPress={() => asyncAlert()}
-          title="Erase Pokemon Data"
+          title="Erase Pokè Data"
         />
       </SettingsCellColumnContainer>
     );
