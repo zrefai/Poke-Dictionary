@@ -1,26 +1,39 @@
 import "react-native-gesture-handler";
-import React from "react";
+import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
-import { build } from "@shipt/react-native-tachyons";
-import { tachyonStyles } from "./src/styles/styleConfig";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./src/redux/store/configureStore";
-import SearchStack from "./src/navigation/SearchStack";
+import MainStack from "./src/navigation/MainStack";
 import { StatusBar } from "expo-status-bar";
+import { cacheImages } from "./src/utils/cacheImages";
+import { cacheFonts } from "./src/utils/cacheFonts";
 
 export default function App() {
-  const [loaded] = useFonts({
-    Pokemon_GB: require("./assets/fonts/PokemonGb-RAeo.ttf"),
-    Unown: require("./assets/fonts/PokemonUnownGb-YAWa.ttf"),
-  });
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
 
-  build({ tachyonStyles });
+  const loadAssetsAsync = async () => {
+    const imageAssets = cacheImages([
+      require("./assets/images/Placeholder.png"),
+    ]);
+    const fontAssets = cacheFonts([
+      { Pokemon_GB: require("./assets/fonts/PokemonGb-RAeo.ttf") },
+      { Unown: require("./assets/fonts/PokemonUnownGb-YAWa.ttf") },
+    ]);
 
-  if (!loaded) {
-    return <AppLoading />;
+    await Promise.all([...imageAssets, ...fontAssets]);
+  };
+
+  if (!assetsLoaded) {
+    return (
+      <AppLoading
+        startAsync={loadAssetsAsync}
+        onFinish={() => setAssetsLoaded(true)}
+        onError={console.warn}
+      />
+    );
   }
 
   return (
@@ -28,7 +41,7 @@ export default function App() {
       <PersistGate loading={null} persistor={persistor}>
         <StatusBar style="dark" />
         <NavigationContainer>
-          <SearchStack />
+          <MainStack />
         </NavigationContainer>
       </PersistGate>
     </Provider>

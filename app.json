@@ -4,12 +4,12 @@
     "slug": "Pokemon-Dictionary",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "",
+    "icon": "./assets/images/icon.png",
     "primaryColor": "#78ebbd",
     "splash": {
-      "image": "",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -19,7 +19,7 @@
       "supportsTablet": false
     },
     "web": {
-      "favicon": ""
+      "favicon": "./assets/images/favicon.png"
     }
   }
 }

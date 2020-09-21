@@ -13,9 +13,9 @@ import Moves from "../screens/Moves";
 import Settings from "../screens/Settings";
 import SettingsButton from "../components/settings/SettingsButton";
 import FavoritesButton from "../components/favorites/FavoritesButton";
-import FavoritesStack from "../navigation/FavoritesStack";
+import FavoritesStack from "./FavoritesStack";
 
-const SearchStack = () => {
+const MainStack = () => {
   const isUnown = useSelector(unown);
   const Stack = createStackNavigator();
 
@@ -62,4 +62,4 @@ const SearchStack = () => {
   );
 };
 
-export default SearchStack;
+export default MainStack;
