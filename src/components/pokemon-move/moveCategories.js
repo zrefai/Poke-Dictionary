@@ -78,9 +78,7 @@ const renderTarget = (size, textOptions, target) => {
 export const renderNetStats = (results, details_flag, dmg = "") => {
   const size = sizeDefault(details_flag);
   const containerSize = containerSizeDefault(details_flag);
-  const textOptions = details_flag
-    ? { textAlign: "center" }
-    : { textAlign: "center", lineHeight: 16 };
+  const textOptions = { textAlign: "center", lineHeight: 16 };
   const statChanges = results.stat_changes[0];
 
   return (
