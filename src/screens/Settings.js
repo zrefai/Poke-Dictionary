@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Settings,
-  SafeAreaView,
-  Switch,
-  Button,
-  Alert,
-} from "react-native";
+import { View, Text, SafeAreaView, Switch, Button, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fontChange } from "../redux/actions/font";
 import { styled } from "@shipt/react-native-tachyons";

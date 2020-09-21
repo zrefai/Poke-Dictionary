@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
 import StyledText from "../../../styles/TextStyle";
 import clipID from "../../../utils/clipID";

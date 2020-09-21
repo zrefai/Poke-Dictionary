@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { styled } from "@shipt/react-native-tachyons/dist/styled";
-import { commonStyles, regularText } from "../../styles/styleConfig";
+import { regularText } from "../../styles/styleConfig";
 import StyledText from "../../styles/TextStyle";
 import uuid from "../../utils/uuid";
 

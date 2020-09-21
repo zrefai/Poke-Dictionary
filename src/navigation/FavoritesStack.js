@@ -14,7 +14,6 @@ import Favorites from "../screens/Favorites";
 import Moves from "../screens/Moves";
 import { commonStyles, regularText } from "../styles/styleConfig";
 import capitalize from "../utils/capitalize";
-// import { StackActions, useNavigation } from "@react-navigation/native";
 
 const FavoritesStack = () => {
   const Stack = createStackNavigator();

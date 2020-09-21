@@ -6,13 +6,8 @@ import uuid from "../../utils/uuid";
 import PokemonCard from "../pokemon-card/PokemonCard";
 import StyledText from "../../styles/TextStyle";
 
-const returnText =
-  "Hit enter on current search to load pokemon that haven't shown up in the list yet";
 const NothingView = styled(View)`mv5`;
 const LoadMoreButton = styled(TouchableOpacity, styles.loadMoreButton)`aic`;
-const ReturnTextContainer = styled(View, {
-  alignContent: "center",
-})`asc mt7 ma6`;
 
 const PokemonList = ({ pokemonList, searching, onLoadMore }) => {
   const renderLoadMore = () => {

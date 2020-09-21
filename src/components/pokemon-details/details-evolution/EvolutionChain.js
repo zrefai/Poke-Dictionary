@@ -1,6 +1,5 @@
 import React from "react";
 import uuid from "../../../utils/uuid";
-import StyledText from "../../../styles/TextStyle";
 import useEvolutionSearch from "../../../hooks/useEvolutionSearch";
 import EvolutionLink from "./EvolutionLink";
 import DetailsError from "../DetailsError";
