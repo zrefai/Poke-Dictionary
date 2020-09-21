@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./src/redux/store/configureStore";
 import SearchStack from "./src/navigation/SearchStack";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -25,6 +26,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <StatusBar style="dark" />
         <NavigationContainer>
           <SearchStack />
         </NavigationContainer>
