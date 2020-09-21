@@ -31,7 +31,7 @@ const PokemonType = ({
 
   const PokemonTypeBackground = styled(
     View,
-    damage_flag ? typeBorder(18) : moves_flag ? typeBorder(19) : typeBorder(22)
+    damage_flag ? typeBorder(18) : moves_flag ? typeBorder(19) : typeBorder(23)
   )``;
 
   const determineTypeText = () => {
@@ -46,7 +46,7 @@ const PokemonType = ({
       return regularText(7, 4, { color: "white", paddingBottom: 1 }, isUnown);
     if (moves_flag)
       return regularText(7, 4, { color: "white", paddingBottom: 1 }, isUnown);
-    return regularText(8.5, 4, { color: "white" }, isUnown);
+    return regularText(8, 4, { color: "white" }, isUnown);
   };
 
   const determineTypeColor = (type) => {

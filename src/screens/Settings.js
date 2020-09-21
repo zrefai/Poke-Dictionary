@@ -62,7 +62,7 @@ const SettingsScreen = () => {
           This will also erase the data saved for your favorites list. Only do
           this if you ever experience problems with the Pokemon Dictionary or
           want to free up memory on your personal device. Internet connection is
-          required after clearing memory for furhter use of the Pokemon
+          required after clearing memory for further use of the Pokemon
           Dictionary.
         </SettingsCellDescriptionText>
         <SettingsCellButton

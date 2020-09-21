@@ -17,7 +17,7 @@ export const shortHandStats = {
   evasion: "EVA",
 };
 
-const sizeDefault = (details_flag) => (details_flag ? 7 : 8);
+const sizeDefault = (details_flag) => (details_flag ? 7 : 7.5);
 const containerSizeDefault = (details_flag) => (details_flag ? null : 8);
 
 export const renderShortStats = (results, details_flag, unique_flag = 0) => {
