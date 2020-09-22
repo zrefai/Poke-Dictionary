@@ -7,9 +7,7 @@ Experiment with local caching and optimization techniques to provide a seamless 
 ## Technologies 
 React Native, Redux, Redux Persist, Fuse.js, Axios
 
-## Details 
-
-### How does it work?
+## How does it work?
 #### Fetching and AsyncStorage
 On a fresh download, the app will fetch any new pokemon from the PokéAPI and store it in AsyncStorage. If there is ever a re-render required of a pokemon in the search list or its details, it will fetch that data from AsyncStorage instead of fetching the data from the API. New pokemon data is always fetched and stored on initial render, but retrieved from device memory every time after. This makes renders quick, and its an efficient way for handling repeat renders of the same pokemon during searching. I had initially thought to use Redux as a container over AsyncStorage for this portion of the app. Its good practice to do so, but state management was not necessary for Pokemon lookup, their details, or moves. 
 
