@@ -10,7 +10,8 @@ Experiment with local caching and optimization techniques to provide a seamless 
 
 ## In Action
 <p align="center">
-  <img src="https://github.com/zrefai/Poke-Dictionary/blob/gh-pages/myVideo5.gif?raw=true" alt="gif 1" width="300" height="650">
+  <img src="https://github.com/zrefai/Poke-Dictionary/blob/gh-pages/myVideo5.gif?raw=true" alt="gif 1" width="300" height="650" style="margin:0px 5px">
+  <img src="https://github.com/zrefai/Poke-Dictionary/blob/gh-pages/myVideo7.gif?raw=true" alt="gif 2" width="300" height="650" style="margin:0px 5px">
 </p>
 
 
@@ -31,3 +32,8 @@ The code for this app is condensed as much as possible. Components like PokemonC
 - Every component in the details page except for the Info and Stats sections of a pokemon required a different and sometimes multiple API calls to fetch the data. Stats and Info data are available attributes in the first fetch of a pokemon's data, but this is not the case for Damage Stats, Moves List or Evolutions. Managing this was difficult at first, and required use of smart parent components and dummy children components. This was a fun challenge for a concept that was fairly new to me in practice.
 - Searching was improperly implemented in the app at first. I had it so that if you didnt spell the pokemon's name correctly the first time, you would probably have to use google to get the correct spelling. My friend recommended suggestions to searches to make the user experience more fluid and boy did it make a difference. A Fuzzy Search algorithm is used for searching pokemon now, brought to you by [Fuse.js](https://fusejs.io/). This is a neat library, and very easy to use.
 - Error handling was challenging with this API. After implementing Fuzzy Search, the app opened up to a lot more data all at once. This caused a ton of crashes, as I was not handling any of the errors from potential null values in the API nor handling errors in fetching the data. To counteract this, I built custom hooks to return results or errors from fetching. The app contained a ton of conditions for checking null values and was causing data to render slowly in certain areas. This was fixed by reducing/optimizing these checks in key areas. 
+
+### WHAT ?!?
+<p align="center">
+  <img src="https://github.com/zrefai/Poke-Dictionary/blob/gh-pages/myVideo8.gif?raw=true" alt="gif 3" width="300" height="650">
+</p>
