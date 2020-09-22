@@ -24,7 +24,7 @@ This should download all of the necessary packages and node modules. To run the 
 npm start
 ```
 
-This should start the metro bundler. Hitting `i` in your terminal will open it up in the iOS simulator. **(DISCLAIMER: I developed this project soley for iOS and for iPhone. This app is not tailored for Android devices or tablets. Unexpected behavior may occur when opening this app with the latter mediums.)**
+This should start the metro bundler. Hitting `i` in your terminal will open it up in the iOS simulator. You need to have Xcode and the iOS simulator downloaded for this. **(DISCLAIMER: I developed this project soley for iOS and for iPhone. I have not tested this app for Android devices or tablets. Unexpected behavior may occur when opening this app with the latter mediums.)**
 
 ## Details
 
