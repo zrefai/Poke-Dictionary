@@ -1,7 +1,7 @@
 # Poké-Dictionary
 A react native app for looking up pokemon using the PokéAPI.
 
-![icon](https://github.com/zrefai/Poke-Dictionary/blob/gh-branch/icon.png?raw=true)
+![icon](./icon.png)
 
 ## Goal Of The Project
 Experiment with local caching and optimization techniques to provide a seamless solution for easy look up of any of the 890 pokemon. 
