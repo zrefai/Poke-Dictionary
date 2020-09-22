@@ -16,7 +16,7 @@ Experiment with local caching and optimization techniques to provide a seamless 
 
 
 ## Technologies 
-React Native, Redux, Redux Persist, Fuse.js, Axios
+[React Native](https://reactnative.dev/), [Redux](https://redux.js.org/), [Redux Persist](https://github.com/rt2zz/redux-persist), [Fuse.js](https://fusejs.io/), [Axios](https://github.com/axios/axios)
 
 ## How does it work?
 #### Fetching and AsyncStorage
