@@ -1,37 +1,25 @@
-## Welcome to GitHub Pages
+# Poké-Dictionary
+A react native app for looking up pokemon using the PokéAPI.
 
-You can use the [editor on GitHub](https://github.com/zrefai/Poke-Dictionary/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Goal Of The Project
+Experiment with local caching and optimization techniques to provide a seamless solution for easy look up of any of the 890 pokemon. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Technologies 
+React Native, Redux, Redux Persist, Fuse.js, Axios
 
-### Markdown
+## Details 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### How does it work?
+#### Fetching and AsyncStorage
+On a fresh download, the app will fetch any new pokemon from the PokéAPI and store it in AsyncStorage. If there is ever a re-render required of a pokemon in the search list or its details, it will fetch that data from AsyncStorage instead of fetching the data from the API. New pokemon data is always fetched and stored on initial render, but retrieved from device memory every time after. This makes renders quick, and its an efficient way for handling repeat renders of the same pokemon during searching. I had initially thought to use Redux as a container over AsyncStorage for this portion of the app. Its good practice to do so, but state management was not necessary for Pokemon lookup, their details, or moves. 
 
-```markdown
-Syntax highlighted code block
+#### Redux
+However, there are places that use Redux: Unown Mode and the Favorites List. Unown Mode requires re-rendering every rendered element with Unown formatted text. To achieve this, I created a function that acted as a funnel for all text formatting in the app. When the switch is made to Unown Mode, the value is changed in Redux causing cascade re-renders, through the aformentioned function, in the search list and everywhere else (Unown mode also required different padding from the normal font and this adjustment is accounted for). The Favorites List acts in the same way. Whenever a pokemon is added to the list an action is called through dispatch and the list is updated in Redux causing the Favorites List to re-render.
 
-# Header 1
-## Header 2
-### Header 3
+#### Code Reuse
+The code for this app is condensed as much as possible. Components like PokemonCard, PokemonDetails, and PokemonMoves in the search list are reused in the Favorites List as well. The PokemonTypes component has attributes (flags) for different styles of PokemonType; this component appears in PokemonCard, PokemonDetails, and PokemonMoves. 
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/zrefai/Poke-Dictionary/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Fun Learning Experiences From The App
+- Every component in the details page except for the Info and Stats sections of a pokemon required a different and sometimes multiple API calls to fetch the data. Stats and Info data are available attributes in the first fetch of a pokemon's data, but this is not the case for Damage Stats, Moves List or Evolutions. Managing this was difficult at first, and required use of smart parent components and dummy children components. This was a fun challenge for a concept that was fairly new to me in practice.
+- Searching was improperly implemented in the app at first. I had it so that if you didnt spell the pokemon's name correctly the first time, you would probably have to use google to get the correct spelling. My friend recommended suggestions to searches to make the user experience more fluid and boy did it make a difference. A Fuzzy Search algorithm is used for searching pokemon now, brought to you by [Fuse.js](https://fusejs.io/). This is a neat library, and very easy to use.
+- Error handling was challenging with this API. After implementing Fuzzy Search, the app opened up to a lot more data all at once. This caused a ton of crashes, as I was not handling any of the errors from potential null values in the API nor handling errors in fetching the data. To counteract this, I built custom hooks to return results or errors from fetching. The app contained a ton of conditions for checking null values and was causing data to render slowly in certain areas. This was fixed by reducing/optimizing these checks in key areas. 
