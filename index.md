@@ -8,6 +8,12 @@ A react native app for looking up pokemon using the PokéAPI.
 ## Goal Of The Project
 Experiment with local caching and optimization techniques to provide a seamless solution for easy look up of any of the 890 pokemon. 
 
+## In Action
+<p align="center">
+  <img src="https://github.com/zrefai/Poke-Dictionary/blob/gh-pages/myVideo5.gif?raw=true" alt="gif 1" width="300" height="650">
+</p>
+
+
 ## Technologies 
 React Native, Redux, Redux Persist, Fuse.js, Axios
 
