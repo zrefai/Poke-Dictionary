@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import errorLog from "../utils/errorLog";
 import clipID from "../utils/clipID";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default (URL, key, name = "") => {
   const [results, setResults] = useState([]);

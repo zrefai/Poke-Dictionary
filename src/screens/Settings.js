@@ -5,7 +5,7 @@ import { fontChange } from "../redux/actions/font";
 import { styled } from "@shipt/react-native-tachyons";
 import { normalizeFont } from "../styles/styleConfig";
 import { unown } from "../redux/selectors";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SettingsCellDescriptionText = styled(Text)`tj pv1 ph2`;
 const SettingsCellButton = styled(Button)`aic`;
