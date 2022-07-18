@@ -1,6 +1,6 @@
 # Poké-Dictionary
 
-A React Native app for looking up pokemon using the PokéAPI, created by Zaki Refai.
+A React Native app for looking up pokemon using the PokéAPI, created by Zaki Refai. https://zrefai.github.io/Poke-Dictionary/
 
 <p align="center">
   <img src="https://github.com/zrefai/Poke-Dictionary/blob/master/assets/images/icon.png?raw=true" alt="icon" width="300" height="300">
